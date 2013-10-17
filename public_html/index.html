@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Filmeverwaltung</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- Own Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        
+        <!-- Import latest version of jQuery -->
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        
+        <!-- Last compiled and minimized CSS -->
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+        
+        <!-- Optional Theme -->
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.min.css" />
+    
+        <!-- Last compiled an minified javascript -->
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        
+        <!-- Import the View file -->
+        <script type="text/javascript" src="js/view.js"></script>
+        
+        <!-- Function that is called when the Page was load -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#loginFormContainer").hide();
+            });
+        </script>
+    </head>
+    <body>  
+        <div class="navbar navbar-inverse navbar-fixed-top">
+             <a class="navbar-brand" href="#">Filmeverwaltung</a>
+             <button onclick="showUserLoginForm();" id="signinopener" class="btn">Sign in</button>
+             <div style="clear:both;"></div>
+        </div>
+        <div id="loginFormContainer" class="jumbotron">
+            <div id="loginNavigator">
+              <img onclick="hideUserLoginForm();" alt="Ausblenden" src="img/exit button.png"/>  
+            </div>
+          <div class="container">
+            <h2>Bitte loggen sie sich ein</h2>
+            <p>Um Filme bewerten zu könnnen, müssen sie sich einloggen<p>
+            <table id="loginFormTable">
+                <tr>
+                    <td>Benutzername</td>
+                    <td><input class="input-sm" type="text" id="namefield" placeholder="z.B. Mario Weidler"/></td>
+                </tr>
+                <tr>
+                    <td>Benutzerpasswort</td>
+                    <td><input class="input-sm" type="password" id="passfield" placeholder="z.B. Passwort"/></td>
+                </tr>
+            </table>
+            <a class="btn btn-primary">Einloggen</a>
+          </div> 
+        </div>
+        <div id="mainContent" class="container">
+           Hier kommt der Content hin 
+        </div>
+    </body>
+</html>

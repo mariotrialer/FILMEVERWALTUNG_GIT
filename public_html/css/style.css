@@ -1,0 +1,38 @@
+body{
+    background-color: #CCC;
+}
+
+#signinopener{
+    float: right;
+    margin-top: 9px;
+    margin-right: 10px;
+}
+
+#namefield{
+    margin-left: 20px;
+}
+
+#passfield{
+    margin-left: 20px;
+}
+
+#loginFormTable{
+    margin-bottom: 10px;
+}
+
+#back{
+    float:right;
+}
+
+#loginNavigator{
+    width: 100%;
+    text-align: right;
+}
+
+#mainContent{
+    margin-top: 60px;
+}
+
+#loginFormContainer{
+    margin-bottom: -50px;
+}
