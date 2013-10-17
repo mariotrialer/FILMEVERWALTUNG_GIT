@@ -38,12 +38,11 @@ and open the template in the editor.
     <body>  
         <div class="navbar navbar-inverse navbar-fixed-top">
              <a class="navbar-brand" href="#">Filmeverwaltung</a>
-             <button onclick="showUserLoginForm();" id="signinopener" class="btn">Sign in</button>
-             <div style="clear:both;"></div>
+             <button onclick="showUserLoginForm();" id="signinopener" class="btn">Anmelden</button>
         </div>
         <div id="loginFormContainer" class="jumbotron">
             <div id="loginNavigator">
-              <img onclick="hideUserLoginForm();" alt="Ausblenden" src="img/exit button.png"/>  
+              <img id="hideButtonImage" onclick="hideUserLoginForm();" alt="Ausblenden" src="img/exit button.png"/>  
             </div>
           <div class="container">
             <h2>Bitte loggen sie sich ein</h2>

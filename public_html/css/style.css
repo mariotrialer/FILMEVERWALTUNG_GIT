@@ -36,3 +36,7 @@ body{
 #loginFormContainer{
     margin-bottom: -50px;
 }
+
+#hideButtonImage:hover{
+    border: 1px solid black;
+}
