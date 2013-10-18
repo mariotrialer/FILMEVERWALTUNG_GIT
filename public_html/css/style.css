@@ -2,7 +2,19 @@ body{
     background-color: #CCC;
 }
 
+#statusMonitor{
+    color: #FFFFFF;
+    margin-top: 15px;
+    float: right;
+}
+
 #signinopener{
+    float: right;
+    margin-top: 9px;
+    margin-right: 10px;
+}
+
+#logoutButton{
     float: right;
     margin-top: 9px;
     margin-right: 10px;
@@ -40,3 +52,5 @@ body{
 #hideButtonImage:hover{
     border: 1px solid black;
 }
+
+

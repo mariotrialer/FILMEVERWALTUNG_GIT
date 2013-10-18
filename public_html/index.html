@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+    The Main Page of the Application, written by Mario Weidler, Nils Fischer 
+    and Patrick Weingärtner
 -->
 <html>
     <head>
@@ -27,19 +26,31 @@ and open the template in the editor.
         
         <!-- Import the View file -->
         <script type="text/javascript" src="js/view.js"></script>
+        <!-- Import the Model file -->
+        <script type="text/javascript" src="js/model.js"></script>
+        <!-- Import the Controller file -->
+        <script type="text/javascript" src="js/controller.js"></script>
         
         <!-- Function that is called when the Page was load -->
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#loginFormContainer").hide();
+                $("#logoutButton").hide();
+                $("#statusMonitor").hide();
             });
         </script>
     </head>
     <body>  
+        
+        <!-- Head-Bar with Title and Signin-Button -->
         <div class="navbar navbar-inverse navbar-fixed-top">
              <a class="navbar-brand" href="#">Filmeverwaltung</a>
+             <span id="statusMonitor"></span>
+             <button onclick="updateViewToLoggedOut();" id="logoutButton" class="btn">Logout</button>
              <button onclick="showUserLoginForm();" id="signinopener" class="btn">Anmelden</button>
         </div>
+        
+        <!-- Area in which the LoginForm appears, hidden on Load -->
         <div id="loginFormContainer" class="jumbotron">
             <div id="loginNavigator">
               <img id="hideButtonImage" onclick="hideUserLoginForm();" alt="Ausblenden" src="img/exit button.png"/>  
@@ -47,6 +58,7 @@ and open the template in the editor.
           <div class="container">
             <h2>Bitte loggen sie sich ein</h2>
             <p>Um Filme bewerten zu könnnen, müssen sie sich einloggen<p>
+            <!-- Table that contains the loginForm -->
             <table id="loginFormTable">
                 <tr>
                     <td>Benutzername</td>
@@ -57,9 +69,11 @@ and open the template in the editor.
                     <td><input class="input-sm" type="password" id="passfield" placeholder="z.B. Passwort"/></td>
                 </tr>
             </table>
-            <a class="btn btn-primary">Einloggen</a>
+            <a onclick="validateUserForm();" class="btn btn-primary">Einloggen</a>
           </div> 
         </div>
+        
+        <!-- Container with the MainContent -->
         <div id="mainContent" class="container">
            Hier kommt der Content hin 
         </div>
