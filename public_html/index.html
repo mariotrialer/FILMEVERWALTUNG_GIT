@@ -15,6 +15,9 @@
         <!-- Import latest version of jQuery -->
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         
+        <!-- Import latest version of Underscore -->
+        <script type="text/javascript" src="js/underscore-min.js"></script>
+        
         <!-- Last compiled and minimized CSS -->
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
         
@@ -31,12 +34,16 @@
         <!-- Import the Controller file -->
         <script type="text/javascript" src="js/controller.js"></script>
         
+        <!-- Import the List-Item Template -->
+        <script type="text/javascript" src="template/listentry_template.js"></script>
+        
         <!-- Function that is called when the Page was load -->
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#loginFormContainer").hide();
                 $("#logoutButton").hide();
                 $("#statusMonitor").hide();
+                appendListRows();
             });
         </script>
     </head>
@@ -45,15 +52,15 @@
         <!-- Head-Bar with Title and Signin-Button -->
         <div class="navbar navbar-inverse navbar-fixed-top">
              <a class="navbar-brand" href="#">Filmeverwaltung</a>
-             <span id="statusMonitor"></span>
              <button onclick="updateViewToLoggedOut();" id="logoutButton" class="btn">Logout</button>
+             <div id="statusMonitor"></div>
              <button onclick="showUserLoginForm();" id="signinopener" class="btn">Anmelden</button>
         </div>
         
         <!-- Area in which the LoginForm appears, hidden on Load -->
         <div id="loginFormContainer" class="jumbotron">
             <div id="loginNavigator">
-              <img id="hideButtonImage" onclick="hideUserLoginForm();" alt="Ausblenden" src="img/exit button.png"/>  
+              <img id="hideButtonImage" onclick="hideUserLoginForm();" alt="Ausblenden" src="img/exit_button.png"/>  
             </div>
           <div class="container">
             <h2>Bitte loggen sie sich ein</h2>
@@ -75,7 +82,39 @@
         
         <!-- Container with the MainContent -->
         <div id="mainContent" class="container">
-           Hier kommt der Content hin 
+           <!-- Table where the Movies are displayed -->
+           <table id="movieTable" class="table table-striped">
+               <!-- Table Headline -->
+               <thead>
+                   <tr>
+                       <th>Student-Id</th>
+                       <th>Firstname</th>
+                       <th>Lastname</th>
+                       <th>Grade</th>
+                   </tr>
+               </thead>
+               <!-- Table Body -->
+               <tbody>
+                   <tr>
+                       <td>1</td>
+                       <td>Mario</td>
+                       <td>Weidler</td>
+                       <td>15 Points</td>
+                   </tr>
+                   <tr>
+                       <td>2</td>
+                       <td>Patrick</td>
+                       <td>Weingärtner</td>
+                       <td>0 Points</td>
+                   </tr>
+                   <tr>
+                       <td>3</td>
+                       <td>Nils</td>
+                       <td>Fischer</td>
+                       <td>10 Points</td>
+                   </tr>
+               </tbody>
+           </table>
         </div>
     </body>
 </html>

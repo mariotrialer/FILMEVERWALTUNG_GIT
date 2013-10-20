@@ -30,7 +30,6 @@ function showLoggedInView(){
     hideUserLoginForm();
     $("#statusMonitor").html("Sie sind eingeloggt");
     $("#statusMonitor").fadeIn();
-    $("#statusMonitor").fadeIn();
     $("#logoutButton").fadeIn();
     $("#signinopener").hide();
 }
@@ -60,6 +59,29 @@ function updateViewToLoggedOut(){
     $("#logoutButton").hide();
     $("#statusMonitor").hide();
     $("#signinopener").fadeIn();
+}
+
+function appendListRows(){
+    _.templateSettings.variable = "rc";
+    
+    var templateData = {
+        listItems: [
+            {
+                id: "1",
+                prename: "Mario",
+                lastname: "Weidler",
+                grade: "15 Points"
+            },
+            {
+              id: "2",
+              prename: "Patrick",
+              lastname: "Weingärtner",
+              grade: "3 Points"
+            }
+        ]
+    };
+    
+    $("#movieTable").append(_.template(listitem_template, templateData));
 }
 
 

@@ -5,7 +5,9 @@ body{
 #statusMonitor{
     color: #FFFFFF;
     margin-top: 15px;
+    margin-right: 20px;
     float: right;
+    color: #00FF33;
 }
 
 #signinopener{
