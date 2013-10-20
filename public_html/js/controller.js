@@ -1,9 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This function processes the Authentification
+ * of the User
  */
-
 function validateUserForm(){
     
     //Get Data from userform
@@ -16,5 +14,32 @@ function validateUserForm(){
     }else{
         alert("Login failed");
     }
+}
 
+/**
+ * This function calls the function
+ * that shows the Logged-Out Perspective
+ */
+function logoutUser(){
+    updateViewToLoggedOut();
+}
+
+/**
+ * This function gets the MovieTitle and
+ * gives it to the vie function as json
+ */
+function requestNewItem(){
+    var movieTitle = $("#inputTitle").val();
+    var returnVal = {
+        "name":movieTitle
+    };
+ 
+    appendListItem(returnVal);
+}
+
+/**
+ * This function changes the name of the selected movie
+ */
+function changeMovieName(moviename){
+    
 }

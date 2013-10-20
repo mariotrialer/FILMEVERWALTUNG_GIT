@@ -28,10 +28,10 @@ function hideUserLoginForm(){
 function showLoggedInView(){
     //Hide Loginform
     hideUserLoginForm();
-    $("#statusMonitor").html("Sie sind eingeloggt");
-    $("#statusMonitor").fadeIn();
     $("#logoutButton").fadeIn();
     $("#signinopener").hide();
+    $("#moviesAddContainer").fadeIn();
+    $(".toolbar").fadeIn();
 }
 
 /**
@@ -57,32 +57,19 @@ function getUserDataFromForm(){
  */
 function updateViewToLoggedOut(){
     $("#logoutButton").hide();
-    $("#statusMonitor").hide();
     $("#signinopener").fadeIn();
+    $("#moviesAddContainer").fadeOut();
 }
 
-function appendListRows(){
-    _.templateSettings.variable = "rc";
+/**
+ * This function appends the template to the List
+ */
+function appendListItem(data){
     
-    var templateData = {
-        listItems: [
-            {
-                id: "1",
-                prename: "Mario",
-                lastname: "Weidler",
-                grade: "15 Points"
-            },
-            {
-              id: "2",
-              prename: "Patrick",
-              lastname: "Weingärtner",
-              grade: "3 Points"
-            }
-        ]
-    };
+    var listItemTemplate = _.template($("#filmListTemplate").html());
+    var resultingHtml = listItemTemplate({item : data});
     
-    $("#movieTable").append(_.template(listitem_template, templateData));
+    $("#tablebody").append(resultingHtml);
 }
-
 
 

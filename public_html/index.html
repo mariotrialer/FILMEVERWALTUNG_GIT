@@ -34,16 +34,37 @@
         <!-- Import the Controller file -->
         <script type="text/javascript" src="js/controller.js"></script>
         
-        <!-- Import the List-Item Template -->
-        <script type="text/javascript" src="template/listentry_template.js"></script>
+        <!-- Template for a List Item -->
+        <script type="text/template" id="filmListTemplate">
+            <tr>
+                <td><%= item.name %></td>
+                <td><img src="img/0stars.png"/></td>
+                 <td class="toolbar">
+                    <button type="button" class="btn btn-sm btn-default btn-lg">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default btn-lg">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default btn-lg">
+                        <span class="glyphicon glyphicon-trash"></span>  
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-default btn-lg">
+                        <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                    </button>
+                </td>
+            </tr>
+        </script>
         
         <!-- Function that is called when the Page was load -->
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#loginFormContainer").hide();
                 $("#logoutButton").hide();
-                $("#statusMonitor").hide();
-                appendListRows();
+                $("#moviesAddContainer").hide();
+                $(".toolbar").hide();
             });
         </script>
     </head>
@@ -52,8 +73,7 @@
         <!-- Head-Bar with Title and Signin-Button -->
         <div class="navbar navbar-inverse navbar-fixed-top">
              <a class="navbar-brand" href="#">Filmeverwaltung</a>
-             <button onclick="updateViewToLoggedOut();" id="logoutButton" class="btn">Logout</button>
-             <div id="statusMonitor"></div>
+             <button onclick="logoutUser();" id="logoutButton" class="btn btn-danger">Logout</button>
              <button onclick="showUserLoginForm();" id="signinopener" class="btn">Anmelden</button>
         </div>
         
@@ -65,53 +85,165 @@
           <div class="container">
             <h2>Bitte loggen sie sich ein</h2>
             <p>Um Filme bewerten zu könnnen, müssen sie sich einloggen<p>
-            <!-- Table that contains the loginForm -->
-            <table id="loginFormTable">
-                <tr>
-                    <td>Benutzername</td>
-                    <td><input class="input-sm" type="text" id="namefield" placeholder="z.B. Mario Weidler"/></td>
-                </tr>
-                <tr>
-                    <td>Benutzerpasswort</td>
-                    <td><input class="input-sm" type="password" id="passfield" placeholder="z.B. Passwort"/></td>
-                </tr>
-            </table>
+            <!-- Grid that contains the loginForm -->
+            <div id="formContainer">
+                <div class="nameColumn">Benutzername</div>
+                <div class="fieldColumn"><input class="input-sm" type="text" id="namefield" placeholder="z.B. Mario Weidler"/></div>
+                <div class="nameColumn">Benutzerpasswort</div>
+                <div class="fieldColumn"><input class="input-sm" type="password" id="passfield" placeholder="z.B. Passwort"/></div>
+                <div style="clear: both"></div>
+            </div>
             <a onclick="validateUserForm();" class="btn btn-primary">Einloggen</a>
           </div> 
         </div>
         
         <!-- Container with the MainContent -->
         <div id="mainContent" class="container">
+            <h3>Filmübersicht</h3>
+            <!-- Div in which the User can enter a new movie title -->
+            <div id="moviesAddContainer">
+                <h4>Neuen Film eintragen...</h4>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputTitle" placeHolder="Filmtitel"/>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="requestNewItem();" class="btn btn-default">Film hinzufügen</button>
+                    </div>
+                </div>
+            </div>
            <!-- Table where the Movies are displayed -->
            <table id="movieTable" class="table table-striped">
                <!-- Table Headline -->
                <thead>
                    <tr>
-                       <th>Student-Id</th>
-                       <th>Firstname</th>
-                       <th>Lastname</th>
-                       <th>Grade</th>
+                       <th>Filmtitel</th>
+                       <th>Bewertung</th>
+                       <th class="toolbar">Werkzeuge</th>
+                       <th>Aktionen</th>
                    </tr>
                </thead>
                <!-- Table Body -->
-               <tbody>
-                   <tr>
-                       <td>1</td>
-                       <td>Mario</td>
-                       <td>Weidler</td>
-                       <td>15 Points</td>
+               <tbody id="tablebody">
+                   <tr id="4_Fäuste_gegen_Rio">
+                       <td>4 Fäuste gegen Rio</td>
+                       <td><img src="img/5stars.png" alt="5 Sterne"/></td>
+                       <td class="toolbar">
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-star"></span>
+                           </button> 
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-trash"></span>  
+                           </button>
+                       </td>
+                       <td>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                           </button>
+                       </td>
                    </tr>
-                   <tr>
-                       <td>2</td>
-                       <td>Patrick</td>
-                       <td>Weingärtner</td>
-                       <td>0 Points</td>
+                   <tr id="Die_mit_dem_roten_halsband">
+                       <td>Die mit dem roten Halsband</td>
+                       <td><img src="img/0stars.png" alt="0 Sterne"/></td>
+                       <td class="toolbar">
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-star"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-trash"></span>  
+                           </button>
+                       </td>
+                       <td>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                           </button>
+                       </td>
                    </tr>
-                   <tr>
-                       <td>3</td>
-                       <td>Nils</td>
-                       <td>Fischer</td>
-                       <td>10 Points</td>
+                   <tr id="anal_addicts">
+                       <td>Anal Addicts by Peter North</td>
+                       <td><img src="img/1stars.png" alt="1 Stern"/></td>
+                       <td class="toolbar">
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-star"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-trash"></span>  
+                           </button>
+                       </td>
+                       <td>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                           </button>
+                       </td>
+                   </tr>
+                   <tr id="indiana_jones">
+                       <td>In Diana Jones</td>
+                       <td><img src="img/3stars.png" alt="3 Sterne"/></td>
+                       <td class="toolbar">                           
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-star"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-trash"></span>  
+                           </button>
+                       </td>
+                       <td>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                           </button>
+                       </td>
+                   </tr>               
+                   <tr id="justin_bieber">
+                       <td>Just in Bieber</td>
+                       <td><img src="img/2stars.png" alt="2 Sterne"/></td>
+                       <td class="toolbar">
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-star"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-trash"></span>  
+                           </button>
+                       </td>
+                       <td>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                           </button>
+                       </td>
+                   </tr>
+                   <tr id="fdk">
+                       <td>Fluch der Karibik</td>
+                       <td><img src="img/4stars.png" alt="4 Sterne"/></td>
+                       <td class="toolbar">
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-star"></span>
+                           </button>  
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-pencil"></span>
+                           </button>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-trash"></span>  
+                           </button>
+                       </td>
+                       <td>
+                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
+                           </button>
+                       </td>
                    </tr>
                </tbody>
            </table>

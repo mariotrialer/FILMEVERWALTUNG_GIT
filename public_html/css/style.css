@@ -30,8 +30,18 @@ body{
     margin-left: 20px;
 }
 
-#loginFormTable{
-    margin-bottom: 10px;
+#formContainer{
+    width: 50%;
+}
+
+.nameColumn{
+    width: 40%;
+    float: left;
+}
+
+.fieldColumn{
+    width: 60%;
+    float: right;
 }
 
 #back{
@@ -41,6 +51,7 @@ body{
 #loginNavigator{
     width: 100%;
     text-align: right;
+    margin-top: 10px;
 }
 
 #mainContent{
@@ -55,4 +66,32 @@ body{
     border: 1px solid black;
 }
 
+#moviesAddContainer{
+    /*margin-top: 20px;*/
+    background: #F0F0F0;
+    padding: 8px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+}
 
+/* Styles for Phones */
+
+@media (max-width: 450px) {
+    
+    #formContainer{
+        width: 100%;
+    }
+    
+    .nameColumn{
+        width: 100%;
+        float: none;
+        margin-top: 10px;
+    }
+    
+    .fieldColumn{
+        float: none;
+        margin-left: -20px;
+        width: 100%;
+    }
+
+}
