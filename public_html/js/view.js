@@ -59,6 +59,7 @@ function updateViewToLoggedOut(){
     $("#logoutButton").hide();
     $("#signinopener").fadeIn();
     $("#moviesAddContainer").fadeOut();
+    $(".toolbar").fadeOut();
 }
 
 /**
@@ -70,6 +71,14 @@ function appendListItem(data){
     var resultingHtml = listItemTemplate({item : data});
     
     $("#tablebody").append(resultingHtml);
+}
+
+/**
+ * This function removes the given TR from
+ * the Mastertable
+ */
+function removeMovieFromView(id){
+    $(id).remove();
 }
 
 
