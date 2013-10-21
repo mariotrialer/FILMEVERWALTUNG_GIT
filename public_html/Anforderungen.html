@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Anforderungsanalyse</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+           <style>
+body{
+    background-color: #333;
+ font-size:15px;
+ font-family:Comic Sans MS;
+ color:#333333;
+} 
+
+</style>
+    </head>
+ 
+    <body>
+        <h1 style="color: #eee;font-size: 300%">Anforderungsanalyse</h1>
+       <div style="background-color: #eee">
+        <h2>Phase 1</h2>
+        <p>        </p>
+        <br>
+        <h3>Funktion</h3>
+        
+        <p>
+* Eingabe eines Filmtitels, um ihn der Liste hinzuzufügen (z.B. Textfeld + Button)
+<br>
+* Eine Liste der vorhandenen Filme darstellen
+<br>
+* Filme sollen in der Liste geändert und gelöscht werden können
+<br>
+* Das Löschen eines Films soll durch eine Benutzereingabe bestätigt werden
+</p>
+
+<br>
+<h3>Oberfläche</h3>
+<p>
+    * Unterscheidung zwischen angemeldeten Benutzern und Gastbenutzern: nur angemeldete Benutzer dürfen die Daten ändern,
+    <br>
+      &nbsp; d.h. Gastbenutzer sehen nicht das Eingabefeld und die Aktionen zum Ändern/Löschen eines 
+     <br>
+      &nbsp; Filmes (username/password kann zunächst hart kodiert sein)
+    
+</p>
+<br>
+<h3>Bemerkungen</h3>
+
+<p>
+    * In dieser Phase ist es noch nicht nötig, dass die Filme in einer Datenbank gespeichert werden!
+    <br>
+* Versuchen Sie, den Programmcode möglichst lesbar zu gestalten (sinnvolle Variablen- und Methodennamen (möglichst Englisch,
+<br> &nbsp; &nbsp;
+einheitliche Formatierung, konsistenter Code-Stil)
+<br>
+* Beispiel eines JavaScript-Coding-Style-Guides: https://github.com/rwldrn/idiomatic.js/tree/master/translations/de_DE
+</p>
+    
+<br>
+<h3>Hinweise</h3>
+<p>
+    * Sie können die Musterlösung zur Übung „Login“ als Ausgangsprojekt verwenden.
+    <br>
+* Um beim Laden der Seite bereits ein paar Filme in der Liste zu zeigen, können Sie diese als „Beispiele” fest im HTML-Dokument vorgeben.
+
+    
+</p>
+       </div>
+<br>
+<div style="background-color:#CCC">
+    <h2>Phase 2</h2>
+    <br>
+    <h3>Funktionen</h3>
+    <p>
+        * Die Liste kann nach gesehenen/ungesehenen Filmen gefiltert werden
+        <br>
+* Doppelte Filme oder Filme ohne Namen sollen vermieden werden
+<br>
+* Bei Eingabe eines ungültigen Titels (z.B. Titel ist leer oder besteht nur aus Leerzeichen, bereits vorhandener Titel) soll der Benutzer auf die
+<br> &nbsp;&nbsp;
+ungültige Eingabe hingewiesen werden (z.B. Feld rot markieren mit einem Fehlertext unterhalb des Feldes)
+
+    </p>
+    <h3>Oberfläche</h3>
+      <p>  
+          * Filme können als gesehen markiert werden
+          <br>
+* Filme können bewertet werden (z.B. 1-5 Sterne)
+<br>
+* Die Liste der Filme kann auf- und absteigend nach Name und eigener Bewertung sortiert werden   
+     </p>
+</div>
+<br>
+<div style="background-color:#7aba7b">
+    <h2>Phase 3</h2>
+    <br>
+    <h3>Funktionen</h3>
+    <p>
+        Zu den Filmen in der Liste sollen zusätzliche Informationen aus einer externen Datenquelle eingebunden werden:
+        <br>
+Als externe Datenquelle soll eine Film-API verwendet werden. Beispiele sind OMDb (keine Anmeldung notwendig) oder TMDb (Registrierung und API-key notwendig)
+<br>
+OMDb 
+<br>
+TMDb (the movie database) (API-Dokumentation: http://www.themoviedb.org/documentation/api)
+<br>
+Sie können auch eine andere Filmdatenbank verwenden aber diese sollte eine API haben.
+    </p>
+    <h3>Oberfläche</h3>
+    <p>
+        * Benutzer klickt bei einem Film auf "Details"
+        <br>
+* Im Hintergrund werden Daten über AJAX aus der externen API geladen
+<br>
+* Unterhalb des Films, als Dialog oder auf einem weiteren Screen wird folgendes angezeigt:
+<br>
+  Bild vom Filmplakat, die Bewertung des Filmes, Erscheinungsjahr, Regisseur, Laufzeit, Genres
+    </p>
+    <h3>Hinweise</h3>
+    <p>
+    Wie behandeln Sie den Fall, dass ein Film in der API nicht gefunden wird oder dass es mehrere Filme mit dem Titel gibt?
+</p>
+</div>
+
+
+     
+    </body>
+</html>
