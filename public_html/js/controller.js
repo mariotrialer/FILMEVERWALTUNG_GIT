@@ -62,3 +62,22 @@ function removeMovie(id){
         
     }
 }
+
+/**
+ * This function generates an id from a given name
+ * @returns {undefined}
+ */
+function createIdForEntry(name){
+    var stringTrimmed = trim(name);
+    console.log(stringTrimmed);
+}
+
+/**
+ * This function trims a string
+ * @returns {undefined}
+ */
+function trim(name){
+    name = name.replace(/(^\s*)|(\s*$)/gi,"");
+    name = name.replace(/[ ]{2,}/gi," "); 
+    name = name.replace(/\n /,"\n"); return name;
+}

@@ -78,6 +78,7 @@ function appendListItem(data){
  * the Mastertable
  */
 function removeMovieFromView(id){
+    $(id).slideUp();
     $(id).remove();
 }
 
