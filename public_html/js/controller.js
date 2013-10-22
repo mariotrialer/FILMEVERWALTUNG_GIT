@@ -77,7 +77,7 @@ function createIdForEntry(name){
  * @returns {undefined}
  */
 function trim(name){
-    name = name.replace(/(^\s*)|(\s*$)/gi,"");
-    name = name.replace(/[ ]{2,}/gi," "); 
-    name = name.replace(/\n /,"\n"); return name;
+    var empty = name.replace(/ /g, "");
+    var serial = empty.toLowerCase();
+    return serial;
 }
