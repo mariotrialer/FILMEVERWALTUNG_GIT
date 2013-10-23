@@ -91,3 +91,22 @@ function updateMovieTitle(newtitle ,titleId){
 }
 
 
+/**
+ * This function updates the image in the
+ * ration cell
+ * @param html
+ * @param id
+ */
+function updateRation(html, id){
+    var newId = "#" + id;
+    $(newId).html(html);
+}
+
+/**
+ * This function adds the Error-Look to the field where the user
+ * can input a new Movie Title
+ */
+function setErrorToINputField(){
+    $("#errorField").addClass("has-error");
+}
+

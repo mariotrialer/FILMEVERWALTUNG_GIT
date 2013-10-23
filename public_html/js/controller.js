@@ -30,15 +30,44 @@ function logoutUser(){
  */
 function requestNewItem(){
     var movieTitle = $("#inputTitle").val();
-    var titleCellId = createIdForTitleCell(movieTitle);
-    var tableRowId = createIdForTableRow(movieTitle);
-    var returnVal = {
-        "name":movieTitle,
-        "rowId": tableRowId,
-        "titleId": titleCellId
-    };
- 
-    appendListItem(returnVal);
+
+    if(movieTitle == ""){
+        setErrorToINputField();
+        $("#errorMessage").slideDown();
+    }else{
+
+        //Check if title consists out of 1 word
+        if(movieTitle.indexOf(' ') >= 0){
+            var titleCellId = createIdForTitleCell(movieTitle);
+            var tableRowId = createIdForTableRow(movieTitle);
+            var imageCellId = createIdForImageCell(movieTitle);
+            var returnVal = {
+                "name":movieTitle,
+                "rowId": tableRowId,
+                "titleId": titleCellId,
+                "imageId": imageCellId
+            };
+        }else{
+            var titleCellId = '_' + movieTitle.toLowerCase();
+            var tableRowId = '__'  + movieTitle.toLowerCase();
+            var imageCellId = '___' + movieTitle.toLowerCase();
+            var returnVal = {
+                "name":movieTitle,
+                "rowId":tableRowId,
+                "titleId": titleCellId,
+                "imageId": imageCellId
+            }
+        }
+        //Persist the Item
+        pushItemToLocalStorage(returnVal);
+
+        //Append Item to the List
+        appendListItem(returnVal);
+    }
+
+
+    //Clear the Input-Field
+    $("#inputTitle").val("");
 }
 
 
@@ -71,5 +100,37 @@ function renameMovie(id){
     var newName = prompt("Wie soll der Film heißen?");
     updateMovieTitle(newName, id);
     
+}
+
+/**
+ * This function lets the user rate the movie
+ */
+function rateMovie(id){
+
+    var ration = prompt("Zahl zwischen 0 und 5");
+
+    //Check if input is alright
+    if(ration >= 0 & ration <= 5){
+        var imagesource = "img/" + ration + "stars.png";
+        var generatedHtml = "<img src='" + imagesource + "' alt='" + ration + " Sterne'/>";
+        updateRation(generatedHtml, id);
+    }else{
+        alert("Üngültige Eingabe, sie müssen eine Zahl zwischen 0 und 5 eingeben!");
+    }
+}
+
+/**
+ * This function gets the stored items from localstorage
+ * and appends them to the list
+ */
+function getStoredItems(){
+    var storedItems = getAllItemsFromLocalStorage();
+
+    //Iterate through the array
+    for(var s = 0; s < storedItems.length; s++){
+        var object = JSON.parse(storedItems[s]);
+        appendListItem(object);
+    }
+
 }
 

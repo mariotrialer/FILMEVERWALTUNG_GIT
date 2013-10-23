@@ -22,6 +22,17 @@ function replaceWhiteSpaceByUnderscore(name){
 }
 
 /**
+ * This function replaces all Whitespaces by double
+ * Underscores in the given String
+ * @returns {string}
+ */
+function replaceWhiteSpaceByDoubleUnderscore(name){
+    var scored = name.replace(/ /g, "__");
+    var serial = scored.toLowerCase();
+    return serial;
+}
+
+/**
  * This function generates the id for a computed
  * tablerow. It's used for delete and rearrange the
  * movies
@@ -42,5 +53,16 @@ function createIdForTableRow(name){
  */
 function createIdForTitleCell(name){
     var stringTrimmed = replaceWhiteSpaceByUnderscore(name);
+    return stringTrimmed;
+}
+
+/**
+ * This function generates the id for a computed
+ * imagecell. It's used for rating the movie
+ * @param name
+ * @returns {string}
+ */
+function createIdForImageCell(name){
+    var stringTrimmed = replaceWhiteSpaceByDoubleUnderscore(name);
     return stringTrimmed;
 }

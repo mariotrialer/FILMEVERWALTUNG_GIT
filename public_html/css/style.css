@@ -79,6 +79,12 @@ body{
     border-radius: 4px;
 }
 
+/* Container that includes the Error-Message */
+#errorMessage{
+    color: #ac2925;
+    padding-top: 15px;
+}
+
 /* Styles for Phones */
 
 @media (max-width: 450px) {

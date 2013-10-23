@@ -40,9 +40,9 @@
         <script type="text/template" id="filmListTemplate">
             <tr id="<%= item.rowId %>">
                 <td id="<%= item.titleId %>"><%= item.name %></td>
-                <td><i>Noch keine Bewertung vorhanden</i></td>
+                <td id="<%= item.imageId %>"><i>Noch keine Bewertung vorhanden</i></td>
                  <td class="toolbar">
-                    <button type="button" class="btn btn-sm btn-default btn-lg">
+                    <button type="button" onclick="rateMovie('<%= item.imageId %>');" class="btn btn-sm btn-default btn-lg">
                         <span class="glyphicon glyphicon-star"></span>
                     </button>
                     <button type="button" onclick="renameMovie('<%= item.titleId %>');" class="btn btn-sm btn-default btn-lg">
@@ -66,6 +66,8 @@
                 $("#loginFormContainer").hide();
                 $("#logoutButton").hide();
                 $("#moviesAddContainer").hide();
+                $("#errorMessage").hide();
+                getStoredItems();
                 $(".toolbar").hide();
             });
         </script>
@@ -86,7 +88,7 @@
             </div>
           <div class="container">
             <h2>Bitte loggen sie sich ein</h2>
-            <p>Um Filme bewerten zu könnnen, müssen sie sich einloggen<p>
+            <p>Um Filme bearbeiten zu könnnen, müssen sie sich einloggen<p>
             <!-- Grid that contains the loginForm -->
             <div id="formContainer">
                 <div class="nameColumn">Benutzername</div>
@@ -106,12 +108,15 @@
             <div id="moviesAddContainer">
                 <h4>Neuen Film eintragen...</h4>
                 <div class="form-inline">
-                    <div class="form-group">
+                    <div id="errorField" class="form-group">
                         <input type="text" class="form-control" id="inputTitle" placeHolder="Filmtitel"/>
                     </div>
                     <div class="form-group">
                         <button onclick="requestNewItem();" class="btn btn-default">Film hinzufügen</button>
                     </div>
+                </div>
+                <div id="errorMessage">
+                    <i>Feld darf nicht leer sein</i>
                 </div>
             </div>
            <!-- Table where the Movies are displayed -->
@@ -129,9 +134,9 @@
                <tbody id="tablebody">
                    <tr id="harrypotterunddersteinderweisen">
                        <td id="harry_potter_und_der_stein_der_weisen">Harry Potter und der Stein der Weisen</td>
-                       <td><img src="img/5stars.png" alt="5 Sterne"/></td>
+                       <td id="harry__potter__und__der__stein__der__weisen"><img src="img/5stars.png" alt="5 Sterne"/></td>
                        <td class="toolbar">
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                           <button type="button" onclick="rateMovie('harry__potter__und__der__stein__der__weisen')" class="btn btn-sm btn-default btn-lg">
                                <span class="glyphicon glyphicon-star"></span>
                            </button> 
                            <button type="button" onclick="renameMovie('harry_potter_und_der_stein_der_weisen')" class="btn btn-sm btn-default btn-lg">
@@ -149,9 +154,9 @@
                    </tr>
                    <tr id="harrypotterunddiekammerdesschreckens">
                        <td id="harry_potter_und_die_kammer_des_schreckens">Harry Potter und die Kammer des Schreckens</td>
-                       <td><img src="img/0stars.png" alt="0 Sterne"/></td>
+                       <td id="harry__potter__und__die__kammer__des__schreckens"><img src="img/0stars.png" alt="0 Sterne"/></td>
                        <td class="toolbar">
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                           <button type="button" onclick="rateMovie('harry__potter__und__die__kammer__des__schreckens')" class="btn btn-sm btn-default btn-lg">
                                <span class="glyphicon glyphicon-star"></span>
                            </button>
                            <button type="button" onclick="renameMovie('harry_potter_und_die_kammer_des_schreckens');" class="btn btn-sm btn-default btn-lg">
@@ -169,9 +174,9 @@
                    </tr>
                    <tr id="harrypotterunddergefangenevonaskaban">
                        <td id="harry_potter_und_der_gefangene_von_askaban">Harry Potter und der Gefangene von Askaban</td>
-                       <td><img src="img/1stars.png" alt="1 Stern"/></td>
+                       <td id="harry__potter__und__der__gefangene__von__askaban"><img src="img/1stars.png" alt="1 Stern"/></td>
                        <td class="toolbar">
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                           <button type="button" onclick="rateMovie('harry__potter__und__der__gefangene__von__askaban')" class="btn btn-sm btn-default btn-lg">
                                <span class="glyphicon glyphicon-star"></span>
                            </button>
                            <button type="button" onclick="renameMovie('harry_potter_und_der_gefangene_von_askaban');" class="btn btn-sm btn-default btn-lg">
@@ -189,9 +194,9 @@
                    </tr>
                    <tr id="harrypotterundderfeuerkelch">
                        <td id="harry_potter_und_der_feuerkelch">Harry Potter und der Feuerkelch</td>
-                       <td><img src="img/3stars.png" alt="3 Sterne"/></td>
+                       <td id="harry__potter__und__der__feuerkelch"><img src="img/3stars.png" alt="3 Sterne"/></td>
                        <td class="toolbar">                           
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                           <button type="button" onclick="rateMovie('harry__potter__und__der__feuerkelch')" class="btn btn-sm btn-default btn-lg">
                                <span class="glyphicon glyphicon-star"></span>
                            </button>
                            <button type="button" onclick="renameMovie('harry_potter_und_der_feuerkelch');" class="btn btn-sm btn-default btn-lg">
@@ -209,9 +214,9 @@
                    </tr>               
                    <tr id="harrypotterundderordendesphönix">
                        <td id="harry_potter_und_der_orden_des_phönix">Harry Potter und der Orden des Phönix</td>
-                       <td><img src="img/2stars.png" alt="2 Sterne"/></td>
+                       <td id="harry__potter__und__der__orden__des__phönix"><img src="img/2stars.png" alt="2 Sterne"/></td>
                        <td class="toolbar">
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                           <button type="button" onclick="rateMovie('harry__potter__und__der__orden__des__phönix')" class="btn btn-sm btn-default btn-lg">
                                <span class="glyphicon glyphicon-star"></span>
                            </button>
                            <button type="button" onclick="renameMovie('harry_potter_und_der_orden_des_phönix');" class="btn btn-sm btn-default btn-lg">
@@ -229,9 +234,9 @@
                    </tr>
                    <tr id="fluchderkaribik">
                        <td id="fluch_der_karibik">Fluch der Karibik</td>
-                       <td><img src="img/4stars.png" alt="4 Sterne"/></td>
+                       <td id="fluch__der__karibik"><img src="img/4stars.png" alt="4 Sterne"/></td>
                        <td class="toolbar">
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
+                           <button type="button" onclick="rateMovie('fluch__der__karibik')" class="btn btn-sm btn-default btn-lg">
                                <span class="glyphicon glyphicon-star"></span>
                            </button>  
                            <button type="button" onclick="renameMovie('fluch_der_karibik');" class="btn btn-sm btn-default btn-lg">
