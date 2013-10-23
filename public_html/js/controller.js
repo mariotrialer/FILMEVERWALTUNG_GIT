@@ -30,18 +30,15 @@ function logoutUser(){
  */
 function requestNewItem(){
     var movieTitle = $("#inputTitle").val();
+    var titleCellId = createIdForTitleCell(movieTitle);
+    var tableRowId = createIdForTableRow(movieTitle);
     var returnVal = {
-        "name":movieTitle
+        "name":movieTitle,
+        "rowId": tableRowId,
+        "titleId": titleCellId
     };
  
     appendListItem(returnVal);
-}
-
-/**
- * This function changes the name of the selected movie
- */
-function changeMovieName(moviename){
-    
 }
 
 
@@ -51,7 +48,7 @@ function changeMovieName(moviename){
 function removeMovie(id){
     //Get sure that user wants to delete the movie
     var isWanted = confirm("Wollen sie den ausgewählten Film wirklich aus ihrer Liste entfernen?");
-    
+   
     //React to the Result
     if(isWanted == true){
        var hashid = "#";
@@ -64,20 +61,15 @@ function removeMovie(id){
 }
 
 /**
- * This function generates an id from a given name
+ * This function changes the name of a movie
+ * that is already in list
+ * @param {string} id 
  * @returns {undefined}
  */
-function createIdForEntry(name){
-    var stringTrimmed = trim(name);
-    console.log(stringTrimmed);
+function renameMovie(id){
+    //Let the user input the new name
+    var newName = prompt("Wie soll der Film heißen?");
+    updateMovieTitle(newName, id);
+    
 }
 
-/**
- * This function trims a string
- * @returns {undefined}
- */
-function trim(name){
-    var empty = name.replace(/ /g, "");
-    var serial = empty.toLowerCase();
-    return serial;
-}

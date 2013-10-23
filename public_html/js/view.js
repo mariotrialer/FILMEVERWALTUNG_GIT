@@ -78,8 +78,16 @@ function appendListItem(data){
  * the Mastertable
  */
 function removeMovieFromView(id){
-    $(id).slideUp();
     $(id).remove();
+}
+
+
+/**
+ * This function updates the Movie Title of the selected movie
+ * @returns {undefined}
+ */
+function updateMovieTitle(newtitle ,titleId){
+    $("#"+titleId).html(newtitle);
 }
 
 
