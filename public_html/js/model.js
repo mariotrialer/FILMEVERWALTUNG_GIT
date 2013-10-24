@@ -14,7 +14,7 @@ var userdata = {
  * @param listItem
  */
 function pushItemToLocalStorage(listItem){
-    var key = listItem.name;
+    var key = listItem.rowId;
     var jsonString = JSON.stringify(listItem);
     localStorage.setItem(key, jsonString);
 }
@@ -38,6 +38,30 @@ function getAllItemsFromLocalStorage(){
 
     return items;
 
+}
+
+/**
+ * This function gets a special item from localstorage
+ * (called by given key)
+ * @param {type} key
+ * @returns {undefined}
+ */
+function getSpecialItem(key){
+    var itemString = localStorage.getItem(key);
+    var itemObject = JSON.parse(itemString);
+    return itemObject;
+}
+
+/**
+ * This function updates the value of the given
+ * object ('id') in localstorage
+ * @param {type} itemNew
+ * @returns {undefined}
+ */
+function updateItemInLocalStorage(id, itemNew){
+    var key = id;
+    var value= JSON.stringify(itemNew);
+    localStorage[key] = value;
 }
 
 
