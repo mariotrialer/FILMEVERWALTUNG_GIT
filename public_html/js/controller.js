@@ -113,6 +113,15 @@ function rateMovie(id){
     if(ration >= 0 & ration <= 5){
         var imagesource = "img/" + ration + "stars.png";
         var generatedHtml = "<img src='" + imagesource + "' alt='" + ration + " Sterne'/>";
+        
+        //Generate the id for calling the storageobject
+        var storageId = id.replace(/__/g, "");
+        
+        //Update entry in localStorage
+        var oldObject = getSpecialItem(storageId);
+        oldObject.imageId = generatedHtml;
+        updateItemInLocalStorage(storageId, oldObject);
+        
         updateRation(generatedHtml, id);
     }else{
         alert("Üngültige Eingabe, sie müssen eine Zahl zwischen 0 und 5 eingeben!");
