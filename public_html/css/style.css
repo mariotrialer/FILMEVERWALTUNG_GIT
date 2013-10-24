@@ -2,41 +2,109 @@ body{
     background-color: #CCC;
 }
 
+/* "Anmelden"-Button */
 #signinopener{
     float: right;
     margin-top: 9px;
     margin-right: 10px;
 }
 
+/* Logout-Button */
+#logoutButton{
+    float: right;
+    margin-top: 9px;
+    margin-right: 10px;
+}
+
+/* Text Input for the Name */
 #namefield{
     margin-left: 20px;
 }
 
+/* Text Input for the Password */
 #passfield{
     margin-left: 20px;
 }
 
-#loginFormTable{
-    margin-bottom: 10px;
+/* Area that contains the Whole Login-Section */
+#formContainer{
+    width: 50%;
 }
+
+/* Div that contains the Label for an input Field in the Login-Form */
+.nameColumn{
+    width: 40%;
+    float: left;
+}
+
+/* Div that contains a field in the Login-Form */
+.fieldColumn{
+    width: 60%;
+    float: right;
+}
+
 
 #back{
     float:right;
 }
 
+/* Div that contains the Button for closing the Login-Area */
 #loginNavigator{
     width: 100%;
     text-align: right;
+    margin-top: 10px;
 }
 
+/* Container that contains the whole Page-Content */
 #mainContent{
     margin-top: 60px;
 }
 
+/* Container in that contains the whole Login-Area */
 #loginFormContainer{
     margin-bottom: -50px;
 }
 
+/* React when user swipes over the close button */
 #hideButtonImage:hover{
     border: 1px solid black;
+}
+
+/* Container that contains the whole Form for adding a new movie */
+#moviesAddContainer{
+    /*margin-top: 20px;*/
+    background: #F0F0F0;
+    padding: 8px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+}
+
+/* Container that includes the Error-Message */
+#errorMessage{
+    color: #ac2925;
+    padding-top: 15px;
+}
+
+/* Styles for Phones */
+
+@media (max-width: 450px) {
+    
+    /* Scale the Login-Form to whole width */
+    #formContainer{
+        width: 100%;
+    }
+    
+    /* Rearrange the form s that name and field are displayed in vertical order */
+    .nameColumn{
+        width: 100%;
+        float: none;
+        margin-top: 10px;
+    }
+    
+    .fieldColumn{
+        float: none;
+        margin-left: -20px;
+        width: 100%;
+    }
+
 }
