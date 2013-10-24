@@ -45,7 +45,8 @@ function requestNewItem(){
                 "name":movieTitle,
                 "rowId": tableRowId,
                 "titleId": titleCellId,
-                "imageId": imageCellId
+                "imageId": imageCellId,
+                "imageHTML": "Noch keine Bewertung"
             };
         }else{
             var titleCellId = '_' + movieTitle.toLowerCase();
@@ -55,7 +56,8 @@ function requestNewItem(){
                 "name":movieTitle,
                 "rowId":tableRowId,
                 "titleId": titleCellId,
-                "imageId": imageCellId
+                "imageId": imageCellId,
+                "imageHTML": "Noch keine Bewertung"
             }
         }
         //Persist the Item
@@ -98,6 +100,7 @@ function removeMovie(id){
 function renameMovie(id){
     //Let the user input the new name
     var newName = prompt("Wie soll der Film heißen?");
+    
     updateMovieTitle(newName, id);
     
 }
@@ -117,10 +120,12 @@ function rateMovie(id){
         //Generate the id for calling the storageobject
         var storageId = id.replace(/__/g, "");
         
+        
         //Update entry in localStorage
         var oldObject = getSpecialItem(storageId);
-        oldObject.imageId = generatedHtml;
+        oldObject.imageHTML = generatedHtml;
         updateItemInLocalStorage(storageId, oldObject);
+        
         
         updateRation(generatedHtml, id);
     }else{
