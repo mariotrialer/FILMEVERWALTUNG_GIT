@@ -35,31 +35,21 @@ function requestNewItem(){
         setErrorToINputField();
         $("#errorMessage").slideDown();
     }else{
-
-        //Check if title consists out of 1 word
-        if(movieTitle.indexOf(' ') >= 0){
             var titleCellId = createIdForTitleCell(movieTitle);
             var tableRowId = createIdForTableRow(movieTitle);
             var imageCellId = createIdForImageCell(movieTitle);
+            var renameButtonId = createIdForRenameButton(movieTitle);
+            var removeButtonId = createIdForRemoveButton(movieTitle);
             var returnVal = {
                 "name":movieTitle,
                 "rowId": tableRowId,
                 "titleId": titleCellId,
                 "imageId": imageCellId,
-                "imageHTML": "Noch keine Bewertung"
+                "imageHTML": "Noch keine Bewertung",
+                "renameButtonId": renameButtonId,
+                "removeButtonId": removeButtonId
             };
-        }else{
-            var titleCellId = '_' + movieTitle.toLowerCase();
-            var tableRowId = '__'  + movieTitle.toLowerCase();
-            var imageCellId = '___' + movieTitle.toLowerCase();
-            var returnVal = {
-                "name":movieTitle,
-                "rowId":tableRowId,
-                "titleId": titleCellId,
-                "imageId": imageCellId,
-                "imageHTML": "Noch keine Bewertung"
-            }
-        }
+
         //Persist the Item
         pushItemToLocalStorage(returnVal);
 
@@ -120,14 +110,13 @@ function rateMovie(id){
         //Generate the id for calling the storageobject
         var storageId = id.replace(/__/g, "");
         
-        
         //Update entry in localStorage
         var oldObject = getSpecialItem(storageId);
         oldObject.imageHTML = generatedHtml;
         updateItemInLocalStorage(storageId, oldObject);
-        
-        
-        updateRation(generatedHtml, id);
+
+        var imageId = storageId.replace(/rowId_/g, "imageId_");
+        updateRation(generatedHtml, imageId);
     }else{
         alert("Üngültige Eingabe, sie müssen eine Zahl zwischen 0 und 5 eingeben!");
     }

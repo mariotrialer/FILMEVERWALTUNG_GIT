@@ -1,36 +1,3 @@
-/**
- * This function removes all Whitespace form given String
- * @returns {undefined}
- */
-function removeWhitespace(name){
-    var empty = name.replace(/ /g, "");
-    var serial = empty.toLowerCase();
-    return serial;
-}
-
-
-/**
- * This function replaces all Whitespaces by Underscores
- * in the given String
- * @param {string} name
- * @returns {undefined}
- */
-function replaceWhiteSpaceByUnderscore(name){
-    var scored = name.replace(/ /g, "_");
-    var serial = scored.toLowerCase();
-    return serial;
-}
-
-/**
- * This function replaces all Whitespaces by double
- * Underscores in the given String
- * @returns {string}
- */
-function replaceWhiteSpaceByDoubleUnderscore(name){
-    var scored = name.replace(/ /g, "__");
-    var serial = scored.toLowerCase();
-    return serial;
-}
 
 /**
  * This function generates the id for a computed
@@ -40,7 +7,8 @@ function replaceWhiteSpaceByDoubleUnderscore(name){
  * @returns {string}
  */
 function createIdForTableRow(name){
-    var stringTrimmed = removeWhitespace(name);
+    var stringTrimmed = name.toLowerCase().replace(/ /g, "");
+    stringTrimmed = "rowId_" + stringTrimmed;
     return stringTrimmed;
 }
 
@@ -52,7 +20,8 @@ function createIdForTableRow(name){
  * @returns {string}
  */
 function createIdForTitleCell(name){
-    var stringTrimmed = replaceWhiteSpaceByUnderscore(name);
+    var stringTrimmed = name.toLowerCase().replace(/ /g, "");
+    stringTrimmed = "titlecellid_" + stringTrimmed;
     return stringTrimmed;
 }
 
@@ -63,6 +32,27 @@ function createIdForTitleCell(name){
  * @returns {string}
  */
 function createIdForImageCell(name){
-    var stringTrimmed = replaceWhiteSpaceByDoubleUnderscore(name);
+    var stringTrimmed = name.toLowerCase().replace(/ /g, "");
+    var stringTrimmed = "imageId_" + stringTrimmed;
     return stringTrimmed;
+}
+
+/**
+ * This function creates an id for a computed
+ * rename-button (used to override the onclick)
+ * @param movieTitle
+ * @returns {string}
+ */
+function createIdForRenameButton(movieTitle){
+    var trimmed = movieTitle.replace(/ /g, "");
+    trimmed = trimmed.toLowerCase();
+    var returnVal = "btnrename_" + trimmed;
+    return returnVal;
+}
+
+
+function createIdForRemoveButton(movieTitle){
+    var trimmed = movieTitle.replace(/ /g, "");
+    trimmed = trimmed.toLowerCase();
+    var returnVal = "btnremove_" + trimmed;
 }

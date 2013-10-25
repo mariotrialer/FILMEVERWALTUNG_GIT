@@ -42,13 +42,13 @@
                 <td id="<%= item.titleId %>"><%= item.name %></td>
                 <td id="<%= item.imageId %>"><%= item.imageHTML %></td>
                  <td class="toolbar">
-                    <button type="button" onclick="rateMovie('<%= item.imageId %>');" class="btn btn-sm btn-default btn-lg">
+                    <button type="button" onclick="rateMovie('<%= item.rowId %>');" class="btn btn-sm btn-default btn-lg">
                         <span class="glyphicon glyphicon-star"></span>
                     </button>
-                    <button type="button" onclick="renameMovie('<%= item.titleId %>');" class="btn btn-sm btn-default btn-lg">
+                    <button id="<%= item.renameButtonId %>" type="button" onclick="renameMovie('<%= item.titleId %>');" class="btn btn-sm btn-default btn-lg">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-                    <button type="button" onclick="removeMovie('<%= item.rowId %>');" class="btn btn-sm btn-default btn-lg">
+                    <button id="<%= item.removeButtonId %>" type="button" onclick="removeMovie('<%= item.rowId %>');" class="btn btn-sm btn-default btn-lg">
                         <span class="glyphicon glyphicon-trash"></span>  
                     </button>
                 </td>
