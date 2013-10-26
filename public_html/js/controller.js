@@ -90,7 +90,30 @@ function removeMovie(id){
 function renameMovie(id){
     //Let the user input the new name
     var newName = prompt("Wie soll der Film heißen?");
-    
+    //Remove the Whitespace and big letters from title
+    var idBase = newName.replace(/ /g,"").toLowerCase();
+
+    //Update the id of the row
+    var oldRowId = id.replace(/titlecellid_/g, ""); //Id of the old row
+    oldRowId = "rowId_" + oldRowId;
+    var newRowId = "rowId_" + idBase;
+    var oldRowHashId = "#" +oldRowId;
+    $(oldRowHashId).attr("id", newRowId);
+
+    //Update the id of the ImageCell
+    var oldImageId = id.replace(/titlecellid_/g, "");
+    oldImageId = "imageId_" + oldImageId;
+    var newImageId = "imageId_" + idBase;
+    var oldImageHashId = "#" + oldImageId;
+    $(oldImageHashId).attr("id", newImageId);
+
+    //Update the id of the Renamebutton
+    var oldRenameBtnId = id.replace(/titlecellid_/g, "");
+    oldRenameBtnId = "btnrename_" + oldRenameBtnId;
+    var newRenameBtnId = "btnrename_" + idBase;
+    var oldHashRenamBtnId = "#" + oldRenameBtnId;
+    $(oldHashRenamBtnId).attr("id", newRenameBtnId);
+
     updateMovieTitle(newName, id);
     
 }
