@@ -110,3 +110,20 @@ function setErrorToINputField(){
     $("#errorField").addClass("has-error");
 }
 
+/**
+ * This function sorts the List of Movies alphabetically
+ * upwards
+ */
+function sortRowsAlphabeticallyUpwards(){
+
+    //Array to contain the TR-Ids
+    var ids = new Array();
+
+    //Fill all the RowIds into an array
+    for(var i = 0, row; row =tablebody.rows[i]; i++){
+        ids.push(row.id);
+    }
+
+    //Sort the Array
+
+}

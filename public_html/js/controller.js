@@ -127,6 +127,7 @@ function renameMovie(id){
     var oldHashRemoveBtnId = "#" + oldRemoveBtnId;
     $(oldHashRemoveBtnId).attr("id", newRemoveBtnId);
 
+
     //Get the od Item from the Localstorage (imageHTML)
     var key = oldRowId;
     var oldItem = getSpecialItem(key);
@@ -149,7 +150,7 @@ function renameMovie(id){
     deleteItemFromLocalStorage(oldRowId);
 
     //Update the Name of the Movie in the View
-    updateMovieTitle(newName, id);
+    updateMovieTitle(newName, newTitlecellId);
     
 }
 
@@ -167,7 +168,8 @@ function rateMovie(id){
         
         //Generate the id for calling the storageobject
         var storageId = id.replace(/__/g, "");
-        
+
+
         //Update entry in localStorage
         var oldObject = getSpecialItem(storageId);
         oldObject.imageHTML = generatedHtml;
@@ -193,5 +195,12 @@ function getStoredItems(){
         appendListItem(object);
     }
 
+}
+
+/**
+ * This function sorts the Table Rows
+ */
+function sortRows(){
+    sortRowsAlphabeticallyUpwards();
 }
 

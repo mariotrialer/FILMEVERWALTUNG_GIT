@@ -124,7 +124,7 @@
                <!-- Table Headline -->
                <thead>
                    <tr>
-                       <th>Filmtitel</th>
+                       <th onclick="sortRows();">Filmtitel</th>
                        <th>Bewertung</th>
                        <th class="toolbar">Werkzeuge</th>
                        <th>Aktionen</th>
@@ -132,126 +132,7 @@
                </thead>
                <!-- Table Body -->
                <tbody id="tablebody">
-                   <tr id="harrypotterunddersteinderweisen">
-                       <td id="harry_potter_und_der_stein_der_weisen">Harry Potter und der Stein der Weisen</td>
-                       <td id="harry__potter__und__der__stein__der__weisen"><img src="img/5stars.png" alt="5 Sterne"/></td>
-                       <td class="toolbar">
-                           <button type="button" onclick="rateMovie('harry__potter__und__der__stein__der__weisen')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-star"></span>
-                           </button> 
-                           <button type="button" onclick="renameMovie('harry_potter_und_der_stein_der_weisen')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-pencil"></span>
-                           </button>
-                           <button onclick="removeMovie('harrypotterunddersteinderweisen');" type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-trash"></span>  
-                           </button>
-                       </td>
-                       <td>
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
-                           </button>
-                       </td>
-                   </tr>
-                   <tr id="harrypotterunddiekammerdesschreckens">
-                       <td id="harry_potter_und_die_kammer_des_schreckens">Harry Potter und die Kammer des Schreckens</td>
-                       <td id="harry__potter__und__die__kammer__des__schreckens"><img src="img/0stars.png" alt="0 Sterne"/></td>
-                       <td class="toolbar">
-                           <button type="button" onclick="rateMovie('harry__potter__und__die__kammer__des__schreckens')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-star"></span>
-                           </button>
-                           <button type="button" onclick="renameMovie('harry_potter_und_die_kammer_des_schreckens');" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-pencil"></span>
-                           </button>
-                           <button onclick="removeMovie('harrypotterunddiekammerdesschreckens');" type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-trash"></span>  
-                           </button>
-                       </td>
-                       <td>
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
-                           </button>
-                       </td>
-                   </tr>
-                   <tr id="harrypotterunddergefangenevonaskaban">
-                       <td id="harry_potter_und_der_gefangene_von_askaban">Harry Potter und der Gefangene von Askaban</td>
-                       <td id="harry__potter__und__der__gefangene__von__askaban"><img src="img/1stars.png" alt="1 Stern"/></td>
-                       <td class="toolbar">
-                           <button type="button" onclick="rateMovie('harry__potter__und__der__gefangene__von__askaban')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-star"></span>
-                           </button>
-                           <button type="button" onclick="renameMovie('harry_potter_und_der_gefangene_von_askaban');" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-pencil"></span>
-                           </button>
-                           <button onclick="removeMovie('harrypotterunddergefangenevonaskaban');" type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-trash"></span>  
-                           </button>
-                       </td>
-                       <td>
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
-                           </button>
-                       </td>
-                   </tr>
-                   <tr id="harrypotterundderfeuerkelch">
-                       <td id="harry_potter_und_der_feuerkelch">Harry Potter und der Feuerkelch</td>
-                       <td id="harry__potter__und__der__feuerkelch"><img src="img/3stars.png" alt="3 Sterne"/></td>
-                       <td class="toolbar">                           
-                           <button type="button" onclick="rateMovie('harry__potter__und__der__feuerkelch')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-star"></span>
-                           </button>
-                           <button type="button" onclick="renameMovie('harry_potter_und_der_feuerkelch');" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-pencil"></span>
-                           </button>
-                           <button onclick="removeMovie('harrypotterundderfeuerkelch');" type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-trash"></span>  
-                           </button>
-                       </td>
-                       <td>
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
-                           </button>
-                       </td>
-                   </tr>               
-                   <tr id="harrypotterundderordendesphönix">
-                       <td id="harry_potter_und_der_orden_des_phönix">Harry Potter und der Orden des Phönix</td>
-                       <td id="harry__potter__und__der__orden__des__phönix"><img src="img/2stars.png" alt="2 Sterne"/></td>
-                       <td class="toolbar">
-                           <button type="button" onclick="rateMovie('harry__potter__und__der__orden__des__phönix')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-star"></span>
-                           </button>
-                           <button type="button" onclick="renameMovie('harry_potter_und_der_orden_des_phönix');" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-pencil"></span>
-                           </button>
-                           <button onclick="removeMovie('harrypotterundderordendesphönix');" type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-trash"></span>  
-                           </button>
-                       </td>
-                       <td>
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
-                           </button>
-                       </td>
-                   </tr>
-                   <tr id="fluchderkaribik">
-                       <td id="fluch_der_karibik">Fluch der Karibik</td>
-                       <td id="fluch__der__karibik"><img src="img/4stars.png" alt="4 Sterne"/></td>
-                       <td class="toolbar">
-                           <button type="button" onclick="rateMovie('fluch__der__karibik')" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-star"></span>
-                           </button>  
-                           <button type="button" onclick="renameMovie('fluch_der_karibik');" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-pencil"></span>
-                           </button>
-                           <button onclick="removeMovie('fluchderkaribik');" type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-trash"></span>  
-                           </button>
-                       </td>
-                       <td>
-                           <button type="button" class="btn btn-sm btn-default btn-lg">
-                               <span class="glyphicon glyphicon-align-justify"></span> &nbsp;Info
-                           </button>
-                       </td>
-                   </tr>
+
                </tbody>
            </table>
         </div>
