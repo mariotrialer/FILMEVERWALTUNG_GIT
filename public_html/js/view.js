@@ -125,5 +125,14 @@ function sortRowsAlphabeticallyUpwards(){
     }
 
     //Sort the Array
+    var id = ids.sort();
 
+    //Clear the table
+    $("#tablebody").html("");
+
+    //Get the items from Storage, according to the sorted keys
+    for(var j = 0; j < ids.length; j++){
+        var itemObject = getSpecialItem(id[j]);
+        appendListItem(itemObject);
+    }
 }
