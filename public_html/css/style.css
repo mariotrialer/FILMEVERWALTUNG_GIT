@@ -77,12 +77,18 @@ body{
     padding: 8px;
     padding-bottom: 12px;
     border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 /* Container that includes the Error-Message */
 #errorMessage{
     color: #ac2925;
     padding-top: 15px;
+}
+
+/* Table Head which will sort the table */
+.sorterButton:hover{
+    background: #F0F0F0;
 }
 
 /* Styles for Phones */

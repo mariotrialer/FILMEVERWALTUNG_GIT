@@ -32,6 +32,8 @@ function showLoggedInView(){
     $("#signinopener").hide();
     $("#moviesAddContainer").fadeIn();
     $(".toolbar").fadeIn();
+    $("#sortButton").attr("onclick", "sortRows();");
+    $("#sortButton").addClass("sorterButton");
 }
 
 /**
@@ -60,6 +62,8 @@ function updateViewToLoggedOut(){
     $("#signinopener").fadeIn();
     $("#moviesAddContainer").fadeOut();
     $(".toolbar").fadeOut();
+    $("#sortButton").attr("onclick", "");
+    $("#sortButton").removeClass("sorterButton");
 }
 
 /**
@@ -135,4 +139,31 @@ function sortRowsAlphabeticallyUpwards(){
         var itemObject = getSpecialItem(id[j]);
         appendListItem(itemObject);
     }
+}
+
+/**
+ * This function sorts the List of movies by their
+ * Ration
+ */
+function sortRowsByRation(){
+
+    //Array to contain the image sources
+    var images = new Array();
+    //Array to contain the storage ids
+    var ids = new Array();
+
+    //Fill all the ImageSources into an array
+    for(var i = 0, row; row =tablebody.rows[i]; i++){
+        ids.push(row.imageId);
+        images.push(row.imageId.html());
+    }
+
+    //Sort the Array
+    var image = images.sort();
+
+    //Clear the table
+    $("#tablebody").html("");
+
+    //Get the items from Storage, according to the sorted keys
+
 }
