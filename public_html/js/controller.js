@@ -100,6 +100,12 @@ function renameMovie(id){
     var oldRowHashId = "#" +oldRowId;
     $(oldRowHashId).attr("id", newRowId);
 
+    //Update the id of the titlecell
+    var oldTitlecellId = id;
+    var newTitlecellId = "titlecellid_" + idBase;
+    var oldTitlecellHashId = "#" + oldTitlecellId;
+    $(oldTitlecellHashId).attr("id", newTitlecellId);
+
     //Update the id of the ImageCell
     var oldImageId = id.replace(/titlecellid_/g, "");
     oldImageId = "imageId_" + oldImageId;
@@ -114,6 +120,35 @@ function renameMovie(id){
     var oldHashRenamBtnId = "#" + oldRenameBtnId;
     $(oldHashRenamBtnId).attr("id", newRenameBtnId);
 
+    //Update the id of the Removebutton
+    var oldRemoveBtnId = id.replace(/titlecellid_/g, "");
+    oldRemoveBtnId = "btnremove_" + oldRemoveBtnId;
+    var newRemoveBtnId = "btnremove_" + idBase;
+    var oldHashRemoveBtnId = "#" + oldRemoveBtnId;
+    $(oldHashRemoveBtnId).attr("id", newRemoveBtnId);
+
+    //Get the od Item from the Localstorage (imageHTML)
+    var key = oldRowId;
+    var oldItem = getSpecialItem(key);
+
+    //Build the new JSON for storing
+    var newJson = {
+        "name": newName,
+        "rowId": newRowId,
+        "titleId": newTitlecellId,
+        "imageId": newImageId,
+        "imageHTML": oldItem.imageHTML,
+        "renameButtonId": newRenameBtnId,
+        "removeButtonId": newRemoveBtnId
+    }
+
+    //Store the new Item in LocalStorage
+    pushItemToLocalStorage(newJson);
+
+    //Delete the old Item from LocalStorage
+    deleteItemFromLocalStorage(oldRowId);
+
+    //Update the Name of the Movie in the View
     updateMovieTitle(newName, id);
     
 }

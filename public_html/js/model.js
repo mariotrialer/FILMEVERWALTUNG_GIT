@@ -4,8 +4,8 @@
 
 //Data to validate the User, this will be computed later
 var userdata = {
-    "name":"testuser",
-    "password":"password"
+    "name":"root",
+    "password":"root"
 };
 
 
@@ -62,6 +62,15 @@ function updateItemInLocalStorage(id, itemNew){
     var key = id;
     var value= JSON.stringify(itemNew);
     localStorage[key] = value;
+}
+
+/**
+ * This function removes the Item specified by the given
+ * id from the localstorage
+ * @param key
+ */
+function deleteItemFromLocalStorage(key){
+    localStorage.removeItem(key);
 }
 
 
