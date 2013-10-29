@@ -67,7 +67,7 @@ function requestNewItem(){
  * This function removes the given movie
  */
 function removeMovie(id){
-    //Get sure that user wants to delete the movie
+    //Get sure the user wants to delete the movie
     var isWanted = confirm("Wollen sie den ausgewählten Film wirklich aus ihrer Liste entfernen?");
    
     //React to the Result
