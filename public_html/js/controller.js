@@ -76,6 +76,7 @@ function removeMovie(id){
        var fullId = hashid + id;
     
        removeMovieFromView(fullId);
+       deleteItemFromLocalStorage(id);
     }else{
         
     }
