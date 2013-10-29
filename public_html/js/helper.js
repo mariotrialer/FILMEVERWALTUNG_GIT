@@ -57,3 +57,9 @@ function createIdForRemoveButton(movieTitle){
     var returnVal = "btnremove_" + trimmed;
     return returnVal;
 }
+
+function createIdForDetailButton(name){
+    var stringTrimmed = name.toLowerCase().replace(/ /g, "");
+    stringTrimmed = "btnDetail_" + stringTrimmed;
+    return stringTrimmed;
+}

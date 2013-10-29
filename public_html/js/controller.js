@@ -40,6 +40,8 @@ function requestNewItem(){
             var imageCellId = createIdForImageCell(movieTitle);
             var renameButtonId = createIdForRenameButton(movieTitle);
             var removeButtonId = createIdForRemoveButton(movieTitle);
+            var detailButtonId = createIdForDetailButton(movieTitle);
+            
             var returnVal = {
                 "name":movieTitle,
                 "rowId": tableRowId,
@@ -152,6 +154,29 @@ function renameMovie(id){
 
     //Update the Name of the Movie in the View
     updateMovieTitle(newName, newTitlecellId);
+    
+}
+
+/**
+*This function ....
+*/
+
+function detailMovie(mName){
+   
+var movie_name= mName; 
+$.ajax({
+   url:"http://www.omdbapi.com/?t=" + movie_name,
+   type:"Get",
+   dataType:"JSON",
+   success: function(data){
+       alert(JSON.stringify(data));
+   }
+   
+       
+   
+});
+    
+
     
 }
 
