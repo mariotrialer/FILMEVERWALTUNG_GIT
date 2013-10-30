@@ -169,7 +169,9 @@ $.ajax({
    type:"Get",
    dataType:"JSON",
    success: function(data){
-       alert(JSON.stringify(data));
+      
+       //alert(JSON.stringify(data));
+   
    }
    
        
