@@ -171,6 +171,7 @@ $.ajax({
    success: function(data){
       
        //alert(JSON.stringify(data));
+       $("#myModal").modal('show');
    
    }
    

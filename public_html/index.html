@@ -63,13 +63,14 @@
         <!-- Function that is called when the Page was load -->
         <script type="text/javascript">
             $(document).ready(function(){
+               // $("#myModal").modal('hide');
                 $("#loginFormContainer").hide();
                 $("#logoutButton").hide();
                 $("#moviesAddContainer").hide();
                 $("#errorMessage").hide();
                 getStoredItems();
                 $(".toolbar").hide();
-                $("#myModal").hide();
+                
             });
         </script>
     </head>
@@ -146,7 +147,7 @@
         Hello world!
       </div>
       <!-- dialog buttons -->
-      <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+      <div class="modal-footer"><button type="button" class="btn btn-primary" >OK</button></div>
     </div>
   </div>
 </div>
@@ -171,7 +172,7 @@
     $("#myModal").modal({                    // wire up the actual modal functionality and show the dialog
       "backdrop"  : "static",
       "keyboard"  : true,
-      "show"      : true                     // ensure the modal is shown immediately
+      "show"      : false                     // ensure the modal is shown immediately
     });
 </script>
     </body>
