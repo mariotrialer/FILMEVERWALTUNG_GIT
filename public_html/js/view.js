@@ -164,12 +164,14 @@ function sortRowsByRation(){
     //Clear the table
     $("#tablebody").html("");
     
-    //Remove Popup
-    function removePopup(){
-        
-        $("#myModal").modal('hide');
-    }
+   
 
     //Get the items from Storage, according to the sorted keys
 
 }
+
+ //Remove Popup
+    function removePopup(){
+        
+        $("#myModal").modal('hide');
+    }
