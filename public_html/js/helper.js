@@ -63,3 +63,18 @@ function createIdForDetailButton(name){
     stringTrimmed = "btnDetail_" + stringTrimmed;
     return stringTrimmed;
 }
+
+
+function runScript(e) {
+    if (e.keyCode == 13) {
+        requestNewItem();
+        
+    }
+}
+
+function runScript2(e) {
+    if (e.keyCode == 13) {
+        validateUserForm();;
+        
+    }
+}

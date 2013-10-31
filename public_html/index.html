@@ -96,9 +96,9 @@
             <!-- Grid that contains the loginForm -->
             <div id="formContainer">
                 <div class="nameColumn">Benutzername</div>
-                <div class="fieldColumn"><input class="input-sm" type="text" id="namefield" placeholder="z.B. Mario Weidler"/></div>
+                <div class="fieldColumn"><input class="input-sm" type="text" id="namefield" onkeydown="return runScript2(event)" placeholder="z.B. Mario Weidler"/></div>
                 <div class="nameColumn">Benutzerpasswort</div>
-                <div class="fieldColumn"><input class="input-sm" type="password" id="passfield" placeholder="z.B. Passwort"/></div>
+                <div class="fieldColumn"><input class="input-sm" type="password" id="passfield" placeholder="z.B. Passwort" onkeydown="return runScript2(event)"/></div>
                 <div style="clear: both"></div>
             </div>
             <a onclick="validateUserForm();" class="btn btn-primary">Einloggen</a>
@@ -113,10 +113,10 @@
                 <h4>Neuen Film eintragen...</h4>
                 <div class="form-inline">
                     <div id="errorField" class="form-group">
-                        <input type="text" class="form-control" id="inputTitle" placeHolder="Filmtitel"/>
+                        <input type="text" class="form-control" id="inputTitle" placeHolder="Filmtitel" onkeypress="return runScript(event)"/>
                     </div>
                     <div class="form-group">
-                        <button onclick="requestNewItem();" class="btn btn-default">Film hinzufügen</button>
+                        <button id="addMovie" onclick="requestNewItem();" class="btn btn-default">Film hinzufügen</button>
                     </div>
                 </div>
                 <div id="errorMessage">
