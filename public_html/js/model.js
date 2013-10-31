@@ -73,6 +73,23 @@ function deleteItemFromLocalStorage(key){
     localStorage.removeItem(key);
 }
 
+function getMovieDetails(movie_name){
+    $.ajax({
+        url:"http://www.omdbapi.com/?t=" + movie_name,
+        type:"Get",
+        dataType:"JSON",
+        success: function(data){
+
+            //alert(JSON.stringify(data));
+            $("#myModal").modal('show');
+
+        }
+
+
+
+    });
+}
+
 
 
 
