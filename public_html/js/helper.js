@@ -64,15 +64,20 @@ function createIdForDetailButton(name){
     return stringTrimmed;
 }
 
-
-function runScript(e) {
+/*
+ * Fires when user press Enter
+ */
+function pressEnterAddMovie(e) {
     if (e.keyCode == 13) {
         requestNewItem();
         
     }
 }
 
-function runScript2(e) {
+/*
+ * Fires when user press Enter
+ */
+function pressEnterLogin(e) {
     if (e.keyCode == 13) {
         validateUserForm();;
         
