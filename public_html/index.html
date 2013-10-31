@@ -61,6 +61,18 @@
                 </td>
             </tr>
         </script>
+
+        <!-- Template for choosing a movie -->
+        <script type="text/template" id="filmChooseTemplate">
+            <div id="content">
+                <h2>Bitte wählen sie einen Film aus:</h2>
+                <% _.each( filmCovers, function( filmCover ){ %>
+                    <div class="coverContainer">
+                        <%= filmCover.imageSrc %>
+                    </div>
+                <% }); %>
+            </div>
+        </script>
         
         <!-- Function that is called when the Page was load -->
         <script type="text/javascript">
@@ -147,7 +159,9 @@
                 <!-- dialog body -->
                 <div class="modal-body">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  Hello world!
+                  <div id="contentOfDialog">
+                      Hurensohn
+                  </div>
                 </div>
                 <!-- dialog buttons -->
                 <div class="modal-footer"><button type="button" onclick="removePopup();" class="btn btn-primary" >OK</button></div>

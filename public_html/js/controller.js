@@ -160,7 +160,6 @@ function renameMovie(id){
 /**
 *This function ....
 */
-
 function detailMovie(mName){
 
     getMovieDetails(mName);
