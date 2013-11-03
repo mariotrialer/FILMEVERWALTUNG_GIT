@@ -112,7 +112,6 @@ function getMovies(movie_name){
  */
 function getInfoOfSpecialMovie(){
     var value = $("#moviesList").val();
-    alert(value);
     $.ajax({
         url: "http://www.omdbapi.com/?i=" + value,
         type: "Get",
