@@ -73,16 +73,42 @@ function deleteItemFromLocalStorage(key){
     localStorage.removeItem(key);
 }
 
-function getMovieDetails(movie_name){
+function getMovies(movie_name){
     $.ajax({
-        url:"http://www.omdbapi.com/?t=" + movie_name,
+        url:"http://www.omdbapi.com/?s=" + movie_name,
         type:"Get",
         dataType:"JSON",
         success: function(data){
 
-            //alert(JSON.stringify(data));
-            $("#myModal").modal('show');
+            alert(JSON.stringify(data));
 
+            //Get the wanted data
+            var dataNew = data.Search;
+
+            //Counter for the Movies
+            var counter = 0;
+
+            if(counter == 1){
+                alert("Treffer");
+            }else{
+                var contentOfDialog = $("#contentOfDialog").html("");
+                var headline = "<h3>Es gibt mehrere Filme zu ihrer Anfrage</h3>";
+                var head2 = "<h4>Bitte treffen sie ihre Auswahl</h4>";
+                $("#contentOfDialog").append(headline);
+                $("#contentOfDialog").append(head2);
+
+                var selectBox = "<select class='form-control'>";
+                $.each(dataNew, function(i, obj){
+                    selectBox = selectBox + "<option value="+obj.Year + ">" + obj.Title + ", " + obj.Year + "</option>";
+                });
+                selectBox = selectBox + "</select>";
+                $("#contentOfDialog").append(selectBox);
+                $("#myModal").modal('show');
+            }
+
+        },
+        error: function(){
+            alert("Der Film wurde nicht gefunden");
         }
 
 

@@ -162,7 +162,7 @@ function renameMovie(id){
 */
 function detailMovie(mName){
 
-    getMovieDetails(mName);
+    getMovies(mName);
 }
 
 /**
