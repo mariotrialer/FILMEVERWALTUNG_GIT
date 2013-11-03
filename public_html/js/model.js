@@ -73,6 +73,11 @@ function deleteItemFromLocalStorage(key){
     localStorage.removeItem(key);
 }
 
+/**
+ * This function fires a search-request to the
+ * Webservice
+ * @param movie_name
+ */
 function getMovies(movie_name){
     $.ajax({
         url:"http://www.omdbapi.com/?s=" + movie_name,
@@ -80,31 +85,15 @@ function getMovies(movie_name){
         dataType:"JSON",
         success: function(data){
 
-            alert(JSON.stringify(data));
-
-            //Get the wanted data
-            var dataNew = data.Search;
-
-            //Counter for the Movies
-            var counter = 0;
-
-            if(counter == 1){
-                alert("Treffer");
+            //Check if there was an Error
+            if(data.hasOwnProperty('Response')){
+                showNotFoundErrorInDialog();
+            }else if(data.Search.length > 1){
+                showVariousOptionsDialog(data.Search, movie_name);
             }else{
-                var contentOfDialog = $("#contentOfDialog").html("");
-                var headline = "<h3>Es gibt mehrere Filme zu ihrer Anfrage</h3>";
-                var head2 = "<h4>Bitte treffen sie ihre Auswahl</h4>";
-                $("#contentOfDialog").append(headline);
-                $("#contentOfDialog").append(head2);
 
-                var selectBox = "<select class='form-control'>";
-                $.each(dataNew, function(i, obj){
-                    selectBox = selectBox + "<option value="+obj.Year + ">" + obj.Title + ", " + obj.Year + "</option>";
-                });
-                selectBox = selectBox + "</select>";
-                $("#contentOfDialog").append(selectBox);
-                $("#myModal").modal('show');
             }
+
 
         },
         error: function(){
@@ -113,6 +102,38 @@ function getMovies(movie_name){
 
 
 
+    });
+}
+
+
+/**
+ * This function fires a request to the service
+ * with the paramaters title and year
+ */
+function getInfoOfSpecialMovie(){
+    var value = $("#moviesList").val();
+    alert(value);
+    $.ajax({
+        url: "http://www.omdbapi.com/?i=" + value,
+        type: "Get",
+        dataType: "JSON",
+        success: function(data){
+            //Build the Json with the required information
+            var infoObject = {
+                "title":data.Title,
+                "cover":data.Poster,
+                "rating":data.imdbRating,
+                "year":data.Year,
+                "regie":data.Director,
+                "runtime":data.Runtime,
+                "genre":data.Genre
+            }
+
+            showInfoDialog(infoObject);
+        },
+        error: function(){
+            alert("Fuck");
+        }
     });
 }
 

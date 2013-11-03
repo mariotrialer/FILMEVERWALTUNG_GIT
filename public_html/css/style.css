@@ -91,6 +91,17 @@ body{
     background: #F0F0F0;
 }
 
+.cover{
+    width: 60px;
+    float: left;
+}
+
+.info{
+    text-align: left;
+    float: right;
+    width: 40%;
+}
+
 /* Styles for Phones */
 
 @media (max-width: 450px) {
