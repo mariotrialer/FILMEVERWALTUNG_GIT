@@ -73,6 +73,69 @@ function deleteItemFromLocalStorage(key){
     localStorage.removeItem(key);
 }
 
+/**
+ * This function fires a search-request to the
+ * Webservice
+ * @param movie_name
+ */
+function getMovies(movie_name){
+    $.ajax({
+        url:"http://www.omdbapi.com/?s=" + movie_name,
+        type:"Get",
+        dataType:"JSON",
+        success: function(data){
+
+            //Check if there was an Error
+            if(data.hasOwnProperty('Response')){
+                showNotFoundErrorInDialog();
+            }else if(data.Search.length > 1){
+                showVariousOptionsDialog(data.Search, movie_name);
+            }else{
+
+            }
+
+
+        },
+        error: function(){
+            alert("Der Film wurde nicht gefunden");
+        }
+
+
+
+    });
+}
+
+
+/**
+ * This function fires a request to the service
+ * with the paramaters title and year
+ */
+function getInfoOfSpecialMovie(){
+    var value = $("#moviesList").val();
+    $.ajax({
+        url: "http://www.omdbapi.com/?i=" + value,
+        type: "Get",
+        dataType: "JSON",
+        success: function(data){
+            //Build the Json with the required information
+            var infoObject = {
+                "title":data.Title,
+                "cover":data.Poster,
+                "rating":data.imdbRating,
+                "year":data.Year,
+                "regie":data.Director,
+                "runtime":data.Runtime,
+                "genre":data.Genre
+            }
+
+            showInfoDialog(infoObject);
+        },
+        error: function(){
+            alert("Fuck");
+        }
+    });
+}
+
 
 
 

@@ -42,6 +42,9 @@
         <script type="text/template" id="filmListTemplate">
             <tr id="<%= item.rowId %>">
                 <td id="<%= item.titleId %>"><%= item.name %></td>
+                <td>
+                    <span class="glyphicon glyphicon-check">&nbsp Ja</span>
+                </td>
                 <td id="<%= item.imageId %>"><%= item.imageHTML %></td>
                  <td class="toolbar">
                     <button type="button" onclick="rateMovie('<%= item.rowId %>');" class="btn btn-sm btn-default btn-lg">
@@ -60,6 +63,24 @@
                     </button>
                 </td>
             </tr>
+        </script>
+
+        <!-- Template for the Info-Page -->
+        <script type="text/template" id="detailTemplate">
+            <div class="infoContainer">
+                <h3><%= info.title %></h3>
+                <div class="cover">
+                    <img src="<%= info.cover %>" alt="Cover of: <%= info.title %>"/>
+                </div>
+                <div class="info">
+                    <p><b>Bewertung: </b><%= info.rating %></p>
+                    <p><b>Erscheinungsjahr: </b><%= info.year %></p>
+                    <p><b>Regisseur: </b><%= info.regie %></p>
+                    <p><b>Laufzeit: </b><%= info.runtime %> </p>
+                    <p><b>Genre: </b><%= info.genre %></p>
+                </div>
+                <div style="clear: both"></div>
+            </div>
         </script>
         
         <!-- Function that is called when the Page was load -->
@@ -129,6 +150,7 @@
                <thead>
                    <tr>
                        <th id="sortButton">Filmtitel</th>
+                       <th>Gesehen</th>
                        <th>Bewertung</th>
                        <th class="toolbar">Werkzeuge</th>
                        <th>Aktionen</th>
@@ -147,10 +169,12 @@
                 <!-- dialog body -->
                 <div class="modal-body">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  Hello world!
+                  <div id="contentOfDialog">
+
+                  </div>
                 </div>
                 <!-- dialog buttons -->
-                <div class="modal-footer"><button type="button" onclick="removePopup();" class="btn btn-primary" >OK</button></div>
+                <div class="modal-footer"><button id="dialogOk" type="button" onclick="removePopup();" class="btn btn-primary" >OK</button></div>
               </div>
             </div>
         </div>

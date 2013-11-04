@@ -160,27 +160,9 @@ function renameMovie(id){
 /**
 *This function ....
 */
-
 function detailMovie(mName){
-   
-var movie_name= mName; 
-$.ajax({
-   url:"http://www.omdbapi.com/?t=" + movie_name,
-   type:"Get",
-   dataType:"JSON",
-   success: function(data){
-      
-       //alert(JSON.stringify(data));
-       $("#myModal").modal('show');
-   
-   }
-   
-       
-   
-});
-    
 
-    
+    getMovies(mName);
 }
 
 /**

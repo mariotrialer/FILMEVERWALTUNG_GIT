@@ -175,3 +175,54 @@ function sortRowsByRation(){
         
         $("#myModal").modal('hide');
     }
+
+/**
+ * This function shows the info dialog and shows that the
+ * requested movie was not found in the Database
+ */
+function showNotFoundErrorInDialog(){
+    var contentOfDialog = $("#contentOfDialog").html("");
+    var headline = "<h3>Der angegebene Film wurde nicht gefunden!</h3>";
+    var paragraph = "<p>Bitte prüfen sie den Namen des Films auf eventuelle Rechtschreibfehler und ändern sie diese " +
+        "gegebenenfalls</p>";
+    $("#contentOfDialog").append(headline);
+    $("#contentOfDialog").append(paragraph);
+    $("#myModal").modal('show');
+}
+
+/**
+ * This function shows the info dialog and shows that the
+ * requested Movie was not found in the database
+ */
+function showVariousOptionsDialog(data, name){
+    var contentOfDialog = $("#contentOfDialog").html("");
+    var headline = "<h3>Es gibt mehrere Filme zu ihrer Anfrage</h3>";
+    var head2 = "<h4>Bitte treffen sie ihre Auswahl</h4>";
+    $("#contentOfDialog").append(headline);
+    $("#contentOfDialog").append(head2);
+
+    var selectBox = "<select id='moviesList' class='form-control'>";
+    $.each(data, function(i, obj){
+        selectBox = selectBox + "<option value=" + obj.imdbID + ">" + obj.Title + ", " + obj.Year + "</option>";
+    });
+    selectBox = selectBox + "</select>";
+    $("#contentOfDialog").append(selectBox);
+    $("#dialogOk").attr("onclick", "getInfoOfSpecialMovie();");
+    $("#myModal").modal('show');
+}
+
+/**
+ * This function shows the info dialog with all the info to the
+ * movie
+ * @param data
+ */
+function showInfoDialog(data){
+    //Clear the Dialog
+    $("contentOfDialog").html("");
+    var listItemTemplate = _.template($("#detailTemplate").html());
+    var resultingHtml = listItemTemplate({info : data});
+
+    $("#contentOfDialog").html(resultingHtml);
+    $("#dialogOk").attr("onclick", "removePopup();");
+    $("#myModal").modal('show');
+}
