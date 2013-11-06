@@ -63,3 +63,23 @@ function createIdForDetailButton(name){
     stringTrimmed = "btnDetail_" + stringTrimmed;
     return stringTrimmed;
 }
+
+/*
+ * Fires when user press Enter
+ */
+function pressEnterAddMovie(e) {
+    if (e.keyCode == 13) {
+        requestNewItem();
+        
+    }
+}
+
+/*
+ * Fires when user press Enter
+ */
+function pressEnterLogin(e) {
+    if (e.keyCode == 13) {
+        validateUserForm();;
+        
+    }
+}
