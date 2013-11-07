@@ -128,6 +128,18 @@ function getSpecialItemFromParse(key){
         success: function(object){
 
             //Build the returning JSON here
+            var provider = {
+                "name":object.get('name'),
+                "rowId":object.get('rowId'),
+                "titleId":object.get('titleId'),
+                "isSeen":object.get('isSeen'),
+                "imageId":object.get('imageId'),
+                "imageHTML":object.get('imageHTML'),
+                "renameButtonId":object.get('renameButtonId'),
+                "removeButtonId":object.get('removeButtonId')
+            }
+
+            return provider;
         },
         error: function(error){
             alert("Error: " + error.code + " " + error.message);
