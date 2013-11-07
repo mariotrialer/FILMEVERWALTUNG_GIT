@@ -17,6 +17,37 @@ function pushItemToLocalStorage(listItem){
     var key = listItem.rowId;
     var jsonString = JSON.stringify(listItem);
     localStorage.setItem(key, jsonString);
+    pushItemToParse(listItem);
+}
+
+/**
+ * This function stores a given JSON-Object in the Parse Database
+ * @param listItem
+ */
+function pushItemToParse(listItem){
+    //Simple Syntax to create a new Subclass of the Parse object
+    var ListRow = Parse.Object.extend("ListRow");
+    //Create a new Instance of that class
+    var listRow = new ListRow();
+    //Assign the Values to the store entry
+    listRow.set("name",listItem.name);
+    listRow.set("rowId", listItem.rowId);
+    listRow.set("titleId", listItem.titleId);
+    listRow.set("isSeen", listItem.isSeen);
+    listRow.set("imageId", listItem.imageId);
+    listRow.set("imageHTML", listItem.imageHTML);
+    listRow.set("renameButtonId", listItem.renameButtonId);
+    listRow.set("removeButtonId", listItem.removeButtonId);
+    //Sign the Entry
+    listRow.save(null, {
+        success: function(listRow){
+            alert("Der Film " + listRow.name + " wurde gespeichert");
+        },
+        error: function(){
+            alert("Fehler");
+        }
+    })
+
 }
 
 
@@ -41,6 +72,42 @@ function getAllItemsFromLocalStorage(){
 }
 
 /**
+ * This function gets all Movie-Objects from parse and appends
+ * them to the list
+ */
+function getAllItemsFromParse(){
+
+    var ListRow = Parse.Object.extend("ListRow");
+    var query = new Parse.Query(ListRow);
+    query.find({
+        success: function(results){
+            for(var i = 0; i < results.length; i++){
+                var object = results[i];
+
+                //Build the Object for the listRow
+                var provider = {
+                    "name":object.get('name'),
+                    "rowId":object.get('rowId'),
+                    "titleId":object.get('titleId'),
+                    "isSeen":object.get('isSeen'),
+                    "imageId":object.get('imageId'),
+                    "imageHTML":object.get('imageHTML'),
+                    "renameButtonId":object.get('renameButtonId'),
+                    "removeButtonId":object.get('removeButtonId')
+                }
+                appendListItem(provider);
+            }
+        },
+        error: function(error){
+            alert("Error: " + error.code + " " + error.message);
+        }
+    })
+
+
+
+}
+
+/**
  * This function gets a special item from localstorage
  * (called by given key)
  * @param {type} key
@@ -50,6 +117,22 @@ function getSpecialItem(key){
     var itemString = localStorage.getItem(key);
     var itemObject = JSON.parse(itemString);
     return itemObject;
+}
+
+function getSpecialItemFromParse(key){
+
+    var ListRow = Parse.Object.extend("ListRow");
+    var query = new Parse.Query(ListRow);
+    query.equalTo('rowId', key);
+    query.first({
+        success: function(object){
+
+            //Build the returning JSON here
+        },
+        error: function(error){
+            alert("Error: " + error.code + " " + error.message);
+        }
+    })
 }
 
 /**

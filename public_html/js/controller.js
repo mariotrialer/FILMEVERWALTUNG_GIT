@@ -40,7 +40,6 @@ function requestNewItem(){
             var imageCellId = createIdForImageCell(movieTitle);
             var renameButtonId = createIdForRenameButton(movieTitle);
             var removeButtonId = createIdForRemoveButton(movieTitle);
-            var detailButtonId = createIdForDetailButton(movieTitle);
             
             var returnVal = {
                 "name":movieTitle,
@@ -54,7 +53,7 @@ function requestNewItem(){
             };
 
         //Persist the Item
-        pushItemToLocalStorage(returnVal);
+        pushItemToParse(returnVal);
 
         //Append Item to the List
         appendListItem(returnVal);
@@ -200,13 +199,7 @@ function rateMovie(id){
  * and appends them to the list
  */
 function getStoredItems(){
-    var storedItems = getAllItemsFromLocalStorage();
-
-    //Iterate through the array
-    for(var s = 0; s < storedItems.length; s++){
-        var object = JSON.parse(storedItems[s]);
-        appendListItem(object);
-    }
+    getAllItemsFromParse();
 
 }
 
