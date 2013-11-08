@@ -131,13 +131,26 @@ function sortRowsAlphabeticallyUpwards(){
     //Sort the Array
     var id = ids.sort();
 
-    //Clear the table
-    $("#tablebody").html("");
-
     //Get the items from Storage, according to the sorted keys
     for(var j = 0; j < ids.length; j++){
-        var itemObject = getSpecialItem(id[j]);
-        appendListItem(itemObject);
+
+        var id = id[j];
+
+        alert($("#" + id.replace(/rowId/g, "titlecellid")).html());
+
+        //Build the JSON for the new row
+        var newObject = {
+            "rowId":id,
+            "name":$("#" + id.replace(/rowId/g, "titlecellid")).html(),
+            "imageHTML":$("#" +id.replace(/rowId/g, "imageId")).html(),
+            "titleId":id.replace(/rowId/g, "titlecellid")
+        };
+
+
+        //var itemObject = getSpecialItemFromParse(id[j]);
+        $("#" + id).remove();
+        appendListItem(newObject);
+
     }
 }
 

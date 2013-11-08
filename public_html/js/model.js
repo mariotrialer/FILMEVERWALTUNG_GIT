@@ -34,6 +34,7 @@ function pushItemToParse(listItem){
     listRow.set("rowId", listItem.rowId);
     listRow.set("titleId", listItem.titleId);
     listRow.set("isSeen", listItem.isSeen);
+    listRow.set("ration", listItem.ration);
     listRow.set("imageId", listItem.imageId);
     listRow.set("imageHTML", listItem.imageHTML);
     listRow.set("renameButtonId", listItem.renameButtonId);
@@ -41,33 +42,12 @@ function pushItemToParse(listItem){
     //Sign the Entry
     listRow.save(null, {
         success: function(listRow){
-            alert("Der Film " + listRow.name + " wurde gespeichert");
+
         },
         error: function(){
             alert("Fehler");
         }
     })
-
-}
-
-
-/**
- * This function iterates over the LocalStorage and returns
- * an array with all values
- * @returns {Array}
- */
-function getAllItemsFromLocalStorage(){
-
-    //Array that will be returned
-    var items = new Array();
-
-    for(var i = 0, l = localStorage.length; i<l; i++){
-        var key = localStorage.key(i);
-        var value= localStorage[key];
-        items.push(value);
-    }
-
-    return items;
 
 }
 
@@ -90,41 +70,37 @@ function getAllItemsFromParse(){
                     "rowId":object.get('rowId'),
                     "titleId":object.get('titleId'),
                     "isSeen":object.get('isSeen'),
+                    "ration":object.get('ration'),
                     "imageId":object.get('imageId'),
                     "imageHTML":object.get('imageHTML'),
                     "renameButtonId":object.get('renameButtonId'),
                     "removeButtonId":object.get('removeButtonId')
                 }
                 appendListItem(provider);
+                $(".toolbar").hide();
             }
         },
         error: function(error){
             alert("Error: " + error.code + " " + error.message);
         }
-    })
+    });
 
-
+    $(".tools").hide();
 
 }
+
 
 /**
- * This function gets a special item from localstorage
- * (called by given key)
- * @param {type} key
- * @returns {undefined}
+ * This function gets a single Item from parse, specified
+ * by the rowId as key
+ * @param key
  */
-function getSpecialItem(key){
-    var itemString = localStorage.getItem(key);
-    var itemObject = JSON.parse(itemString);
-    return itemObject;
-}
-
 function getSpecialItemFromParse(key){
 
     var ListRow = Parse.Object.extend("ListRow");
     var query = new Parse.Query(ListRow);
     query.equalTo('rowId', key);
-    query.first({
+    var object = query.first({
         success: function(object){
 
             //Build the returning JSON here
@@ -133,30 +109,79 @@ function getSpecialItemFromParse(key){
                 "rowId":object.get('rowId'),
                 "titleId":object.get('titleId'),
                 "isSeen":object.get('isSeen'),
+                "ration":object.get('ration'),
                 "imageId":object.get('imageId'),
                 "imageHTML":object.get('imageHTML'),
                 "renameButtonId":object.get('renameButtonId'),
                 "removeButtonId":object.get('removeButtonId')
             }
-
             return provider;
         },
-        error: function(error){
-            alert("Error: " + error.code + " " + error.message);
+        error: function(object){
+            alert("Fehler beim Laden der Daten");
+        }
+    });
+
+    return object;
+}
+
+function deleteSpecialItemFromParse(key){
+    var ListRow = Parse.Object.extend("ListRow");
+    var query = new Parse.Query(ListRow);
+    query.equalTo('rowId', key);
+    query.first({
+        success: function(object){
+            object.destroy({
+                success: function(myObject){
+
+                },
+                error: function(myObject, error){
+                    alert("Fehler");
+                }
+            });
         }
     })
 }
 
 /**
- * This function updates the value of the given
- * object ('id') in localstorage
- * @param {type} itemNew
- * @returns {undefined}
+ * This function updates the entry of ration of the
+ * object specified by the id in storage
+ * @param id
+ * @param newRation
  */
-function updateItemInLocalStorage(id, itemNew){
-    var key = id;
-    var value= JSON.stringify(itemNew);
-    localStorage[key] = value;
+function updateRationOnParse(id, generatedHTML, ration){
+    var ListRow = Parse.Object.extend("ListRow");
+    var query = new Parse.Query(ListRow);
+    query.equalTo("rowId", id);
+    query.first({
+        success: function(object){
+            object.set("imageHTML", generatedHTML);
+            object.set("ration", ration);
+            object.save();
+        }
+    });
+}
+
+/**
+ * This function updates the Movie after renaming on Parse
+ * @param id
+ * @param titleNew
+ */
+function updateMovieOnParse(id, json){
+    var ListRow = Parse.Object.extend("ListRow");
+    var query = new Parse.Query(ListRow);
+    query.equalTo("rowId", id);
+    query.first({
+        success: function(object){
+            object.set("name", json.name);
+            object.set("rowId", json.rowId);
+            object.set("titleId", json.titleId);
+            object.set("imageId", json.imageId);
+            object.set("renameButtonId", json.renameButtonId);
+            object.set("removeButtonId", json.removeButtonId);
+            object.save();
+        }
+    })
 }
 
 /**
@@ -166,6 +191,15 @@ function updateItemInLocalStorage(id, itemNew){
  */
 function deleteItemFromLocalStorage(key){
     localStorage.removeItem(key);
+}
+
+/**
+ * This function removes a single item from parse, specified
+ * by the rowId given as Parameter
+ * @param key
+ */
+function deleteItemFromParse(key){
+
 }
 
 /**

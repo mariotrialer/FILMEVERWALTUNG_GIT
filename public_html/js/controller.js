@@ -46,6 +46,7 @@ function requestNewItem(){
                 "rowId": tableRowId,
                 "titleId": titleCellId,
                 "isSeen": "false",
+                "ration": 10,
                 "imageId": imageCellId,
                 "imageHTML": "Noch keine Bewertung",
                 "renameButtonId": renameButtonId,
@@ -78,7 +79,7 @@ function removeMovie(id){
        var fullId = hashid + id;
     
        removeMovieFromView(fullId);
-       deleteItemFromLocalStorage(id);
+       deleteSpecialItemFromParse(id);
     }else{
         
     }
@@ -130,10 +131,13 @@ function renameMovie(id){
     var oldHashRemoveBtnId = "#" + oldRemoveBtnId;
     $(oldHashRemoveBtnId).attr("id", newRemoveBtnId);
 
+    //Update the onclicks
+
+
 
     //Get the od Item from the Localstorage (imageHTML)
     var key = oldRowId;
-    var oldItem = getSpecialItem(key);
+    var oldItem = getSpecialItemFromParse(key);
 
     //Build the new JSON for storing
     var newJson = {
@@ -147,11 +151,9 @@ function renameMovie(id){
         "removeButtonId": newRemoveBtnId
     }
 
-    //Store the new Item in LocalStorage
-    pushItemToLocalStorage(newJson);
-
-    //Delete the old Item from LocalStorage
-    deleteItemFromLocalStorage(oldRowId);
+    //Update the DB-Entry
+    var idRow = id.replace(/titlecellid/g, "rowId");
+    updateMovieOnParse(idRow, newJson);
 
     //Update the Name of the Movie in the View
     updateMovieTitle(newName, newTitlecellId);
@@ -177,30 +179,16 @@ function rateMovie(id){
     if(ration >= 0 & ration <= 5){
         var imagesource = "img/" + ration + "stars.png";
         var generatedHtml = "<img src='" + imagesource + "' alt='" + ration + " Sterne'/>";
-        
-        //Generate the id for calling the storageobject
-        var storageId = id.replace(/__/g, "");
+        //Ration as number
+        ration = parseInt(ration);
 
+        updateRationOnParse(id, generatedHtml, ration);
 
-        //Update entry in localStorage
-        var oldObject = getSpecialItem(storageId);
-        oldObject.imageHTML = generatedHtml;
-        updateItemInLocalStorage(storageId, oldObject);
-
-        var imageId = storageId.replace(/rowId_/g, "imageId_");
+        var imageId = id.replace(/rowId_/g, "imageId_");
         updateRation(generatedHtml, imageId);
     }else{
         alert("Üngültige Eingabe, sie müssen eine Zahl zwischen 0 und 5 eingeben!");
     }
-}
-
-/**
- * This function gets the stored items from localstorage
- * and appends them to the list
- */
-function getStoredItems(){
-    getAllItemsFromParse();
-
 }
 
 /**
