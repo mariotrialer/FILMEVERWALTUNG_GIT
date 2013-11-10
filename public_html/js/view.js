@@ -136,7 +136,7 @@ function sortRowsAlphabeticallyUpwards(){
 
         var id = id[j];
 
-        alert($("#" + id.replace(/rowId/g, "titlecellid")).html());
+        alert($("#" + id.replace(/rowId/g, "titlecellid")).html());#
 
         //Build the JSON for the new row
         var newObject = {
